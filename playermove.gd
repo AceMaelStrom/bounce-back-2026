@@ -3,7 +3,15 @@ extends CharacterBody3D
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
+const MOUSE_SENS:float = .01
 
+@onready var neck: Node3D = $neck
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		var mouse_motion:Vector2 = event.relative
+		rotate_y(-(mouse_motion.x * MOUSE_SENS))
+		neck.rotate_x(-(mouse_motion.y * MOUSE_SENS))
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
