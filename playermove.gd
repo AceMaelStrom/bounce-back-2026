@@ -14,10 +14,14 @@ func _input(event: InputEvent) -> void:
 		neck.rotate_x(-(mouse_motion.y * MOUSE_SENS))
 		neck.rotation.x = deg_to_rad(clamp(rad_to_deg(neck.rotation.x), -50, 30))
 
+
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+		
+	if Input.is_action_just_pressed("hit"):
+		#animation goes to certain frame where the sword is taken back
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():

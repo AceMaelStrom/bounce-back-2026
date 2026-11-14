@@ -43,7 +43,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.034298, -62.63903)
 script = ExtResource("1_k50ke")
 target = NodePath("../player")
 
-[node name="Camera3D" type="Camera3D" parent="FlyingBall" unique_id=366789397]
+[node name="BallCam" type="Camera3D" parent="FlyingBall" unique_id=366789397]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.9621499, -6.427044)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FlyingBall" unique_id=1231843264]
