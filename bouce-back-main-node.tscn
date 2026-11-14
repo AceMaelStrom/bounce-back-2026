@@ -1,20 +1,46 @@
 [gd_scene format=3 uid="uid://bxxtp6k83ne2u"]
 
+[ext_resource type="Script" uid="uid://ny83qct0pkog" path="res://playermove.gd" id="1_xl1km"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_65dw0"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_xl1km"]
+sky_material = SubResource("ProceduralSkyMaterial_65dw0")
+
+[sub_resource type="Environment" id="Environment_s5aff"]
+background_mode = 2
+sky = SubResource("Sky_xl1km")
+glow_enabled = true
+
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_wydkj"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yfq83"]
 
 [node name="Node3D" type="Node3D" unique_id=1806866938]
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1799722037]
+environment = SubResource("Environment_s5aff")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1707714907]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1564716925]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.03656, -0.40429688, -2.741768)
+transform = Transform3D(1.2398527, 0, 0, 0, 1, 0, 0, 0, 1.0225722, -1.03656, -0.40429688, 0.07584972)
 use_collision = true
-size = Vector3(6.5723877, 0.19140625, 8.266861)
+size = Vector3(6.5723877, 0.19140625, 9.000248)
 
 [node name="player" type="CharacterBody3D" parent="." unique_id=1358605452]
+script = ExtResource("1_xl1km")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="player" unique_id=1940416448]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5297264, 0)
 mesh = SubResource("CapsuleMesh_wydkj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="player" unique_id=607150823]
 shape = SubResource("CapsuleShape3D_yfq83")
+
+[node name="Camera3D" type="Camera3D" parent="player" unique_id=1606123494]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.853883, 0)
