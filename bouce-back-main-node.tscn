@@ -36,7 +36,7 @@ size = Vector3(6.5723877, 0.19140625, 9.000248)
 script = ExtResource("1_xl1km")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="player" unique_id=1940416448]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5297264, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.96842945, 0)
 mesh = SubResource("CapsuleMesh_wydkj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="player" unique_id=607150823]
