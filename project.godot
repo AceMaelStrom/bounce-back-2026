@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="bounceback-2026"
+run/main_scene="uid://bxxtp6k83ne2u"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
