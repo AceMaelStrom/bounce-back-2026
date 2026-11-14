@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bxxtp6k83ne2u"]
 
 [ext_resource type="Script" uid="uid://ny83qct0pkog" path="res://playermove.gd" id="1_xl1km"]
+[ext_resource type="PackedScene" uid="uid://dc7wrndrojk6r" path="res://sword/SWORD.glb" id="2_s5aff"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_65dw0"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -46,3 +47,6 @@ shape = SubResource("CapsuleShape3D_yfq83")
 
 [node name="eyes" type="Camera3D" parent="player/neck" unique_id=1606123494]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.853883, 0)
+
+[node name="SWORD" parent="." unique_id=234357047 instance=ExtResource("2_s5aff")]
+transform = Transform3D(1, 0, 0, 0, 0.9126463, -0.4087502, 0, 0.4087502, 0.9126463, 1.8954828, 3.4545746, 0.22938347)
