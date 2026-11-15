@@ -13,7 +13,10 @@ func _input(event: InputEvent) -> void:
 		rotate_y(-(mouse_motion.x * MOUSE_SENS))
 		neck.rotate_x(-(mouse_motion.y * MOUSE_SENS))
 		neck.rotation.x = deg_to_rad(clamp(rad_to_deg(neck.rotation.x), -50, 30))
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
