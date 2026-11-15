@@ -74,7 +74,13 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_nne0n")
 
+<<<<<<< Updated upstream
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_jldg3"]
+=======
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_keesm"]
+height = 2.8054357
+radius = 0.2
+>>>>>>> Stashed changes
 
 [sub_resource type="Animation" id="Animation_5bw7q"]
 length = 0.001
@@ -180,7 +186,7 @@ transform = Transform3D(1.2398527, 0, 0, 0, 1, 0, 0, 0, 1.0225722, -1.03656, -0.
 use_collision = true
 size = Vector3(6.5723877, 0.19140625, 41.53766)
 
-[node name="FlyingBall" type="CharacterBody3D" parent="." unique_id=1094014442 node_paths=PackedStringArray("target")]
+[node name="FlyingBall" type="CharacterBody3D" parent="." unique_id=1094014442 node_paths=PackedStringArray("target") groups=["ball"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.034298, -62.63903)
 script = ExtResource("1_k50ke")
 target = NodePath("../player")
@@ -188,13 +194,13 @@ target = NodePath("../player")
 [node name="BallCam" type="Camera3D" parent="FlyingBall" unique_id=366789397]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.9621499, -6.427044)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="FlyingBall" unique_id=1231843264]
+[node name="ballcollide" type="CollisionShape3D" parent="FlyingBall" unique_id=1231843264]
 shape = SubResource("SphereShape3D_wydkj")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="FlyingBall" unique_id=975145670]
+[node name="ballmesh3" type="MeshInstance3D" parent="FlyingBall" unique_id=975145670]
 mesh = SubResource("SphereMesh_yfq83")
 
-[node name="player" type="CharacterBody3D" parent="." unique_id=1358605452]
+[node name="player" type="CharacterBody3D" parent="." unique_id=1358605452 groups=["player"]]
 script = ExtResource("1_xl1km")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="player" unique_id=1940416448]
@@ -210,12 +216,12 @@ shape = SubResource("CapsuleShape3D_yfq83")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4620483, -0.34439564)
 current = true
 
-[node name="WeaponManage" type="Node3D" parent="player/neck/eyes" unique_id=783856238]
+[node name="WeaponManage" type="Node3D" parent="player/neck/eyes" unique_id=783856238 groups=["sword"]]
 transform = Transform3D(-0.30399987, 0.95267206, 0, -0.95267206, -0.30399987, 0, 0, 0, 1, 0, 0, 1.4212451)
 script = ExtResource("3_jldg3")
 
 [node name="zweihander" type="Node3D" parent="player/neck/eyes/WeaponManage" unique_id=1546071822]
-transform = Transform3D(-0.54601586, 0.7787051, -0.30900517, 0.81711334, 0.5764102, 0.008726533, 0.18490912, -0.24772756, -0.95101994, 0.268, -0.279, -2)
+transform = Transform3D(-0.54601586, 0.7787051, -0.30900514, 0.81711334, 0.5764102, 0.008726533, 0.18490912, -0.24772756, -0.9510199, 0.268, -0.279, -2)
 
 [node name="swordmesh" type="MeshInstance3D" parent="player/neck/eyes/WeaponManage/zweihander" unique_id=533740283]
 transform = Transform3D(0.99999976, -3.2701064e-07, 2.9802322e-08, -7.706694e-08, 1.0000001, -1.7136335e-07, 1.7881393e-07, -2.6077032e-08, 0.9999998, -0.24181879, -0.327533, 0.04177904)
@@ -223,9 +229,15 @@ mesh = SubResource("ArrayMesh_3peo4")
 
 [node name="hitbox" type="Area3D" parent="player/neck/eyes/WeaponManage/zweihander" unique_id=524702629]
 
+<<<<<<< Updated upstream
 [node name="hitboxCollision" type="CollisionShape3D" parent="player/neck/eyes/WeaponManage/zweihander/hitbox" unique_id=2058099240]
 transform = Transform3D(0.29999977, 7.450581e-09, 4.4703484e-08, 7.8231096e-08, 0.60000014, -4.61936e-07, -8.195639e-08, 8.791685e-07, 0.2999999, -0.24552965, -1.2380728, 0.04644656)
 shape = SubResource("CylinderShape3D_jldg3")
+=======
+[node name="CollisionShape3D" type="CollisionShape3D" parent="player/neck/eyes/WeaponManage/zweihander/hitbox" unique_id=2058099240]
+transform = Transform3D(1.0000014, -4.246831e-07, 1.3411045e-07, 4.4330955e-07, 1.0000006, -1.3560057e-06, -1.4901161e-08, 1.4603138e-06, 1.0000007, -0.24552967, -1.2584668, 0.04644704)
+shape = SubResource("CylinderShape3D_keesm")
+>>>>>>> Stashed changes
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="player" unique_id=263857350]
 libraries/ = SubResource("AnimationLibrary_6qnmk")
