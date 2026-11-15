@@ -17,6 +17,7 @@ extends CharacterBody3D
 @onready var player_cam: Camera3D = target.get_node("neck/eyes")
 @onready var power_ui: CanvasLayer = target.get_node("PowerUI")
 
+var launched = false
 var homing_on := true
 var falling := false
 var fall_speed := 0.0
@@ -37,12 +38,19 @@ func _ready() -> void:
 	$ballmesh3.get_active_material(0).emission_energy_multiplier = 3000.0
 
 func _physics_process(delta: float) -> void:
+	if launched == true and not falling:
+		speed = momentum / 2
+		if momentum < 0:
+			momentum = 0
+			falling = true
+		momentum_bar.value = momentum
+		
 	if ball_cam.current and homing_on == false and falling == false:
 		var turn_x = Input.get_axis("ui_right", "ui_left")
 		var turn_y = Input.get_axis("ui_down", "ui_up")
 		rotate_object_local(Vector3.UP, turn_x * turn_speed * delta)
 		rotate_object_local(Vector3.RIGHT, turn_y * turn_speed * delta)
-
+		
 		momentum -= 10.0 * delta
 		
 		var blue_value = roundi(momentum * 2.55)
@@ -51,16 +59,13 @@ func _physics_process(delta: float) -> void:
 		$ballmesh3.get_active_material(0).albedo_color = neon_color
 		$ballmesh3.get_active_material(0).emission = neon_color
 		
+	elif homing_on == true:
 		
-		speed = momentum / 2
-		if momentum < 0:
-			momentum = 0
-		momentum_bar.value = momentum
-
-		if momentum == 0:
-			falling = true
-
+		momentum += 50 * delta
+		
 	if target and homing_on:
+		momentum_ui.visible = false
+		
 		var target_position = target.global_position + target_offset
 		var current_homing = homing_strength
 		var distance_to_target = global_position.distance_to(target_position)
@@ -73,9 +78,8 @@ func _physics_process(delta: float) -> void:
 
 		if ball_cam.current and global_position.distance_to(target.global_position) < 30.0:
 			player_cam.make_current()
-			momentum_ui.visible = false
 			power_ui.visible = true
-
+			
 	var forward = -global_transform.basis.z
 	var movement = forward * speed * delta
 
@@ -133,6 +137,7 @@ func pause_homing(seconds: float) -> void:
 
 func _on_hitbox_body_entered(body: Node3D) -> void:
 	if body == self:
+		launched = true
 		homing_on = false
 		falling = false
 		fall_speed = 0
