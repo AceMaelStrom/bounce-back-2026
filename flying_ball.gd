@@ -32,6 +32,9 @@ func _ready() -> void:
 	ball_cam.position = Vector3(0, 2, 6)
 	ball_cam.look_at(global_position)
 	momentum_ui.visible = false
+	
+	$ballmesh3.get_active_material(0).emission_enabled = true
+	$ballmesh3.get_active_material(0).emission_energy_multiplier = 5.0
 
 func _physics_process(delta: float) -> void:
 	if ball_cam.current and homing_on == false and falling == false:
@@ -41,6 +44,14 @@ func _physics_process(delta: float) -> void:
 		rotate_object_local(Vector3.RIGHT, turn_y * turn_speed * delta)
 
 		momentum -= 10.0 * delta
+		
+		var blue_value = roundi(momentum * 2.55)
+		var neon_color = Color8(0, 0, blue_value)
+
+		$ballmesh3.get_active_material(0).albedo_color = neon_color
+		$ballmesh3.get_active_material(0).emission = neon_color
+		
+		
 		speed = momentum / 2
 		if momentum < 0:
 			momentum = 0
