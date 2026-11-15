@@ -11,6 +11,7 @@ extends CharacterBody3D
 
 @export	var homing_call := 0
 
+@onready var weapon = target.get_node("neck/eyes/WeaponManage")
 @onready var ball_cam: Camera3D = $BallCam
 @onready var momentum_ui: CanvasLayer = $MomentumUI
 @onready var momentum_bar: ProgressBar = $MomentumUI/MomentumBar
@@ -94,12 +95,14 @@ func _physics_process(delta: float) -> void:
 
 	if collision and momentum >= 0:
 		var collider = collision.get_collider()
+		print(collider.name, " groups:", collider.get_groups(), " layer1:", collider.get_collision_layer_value(1))
 
 		if collider is Player and homing_on:
 			go_to_scene("res://death.tscn")
 			return
 
 		if collider.get_collision_layer_value(1):
+			
 			if collider.is_in_group("glass") and momentum >= 40:
 				homing_on = false
 				collider.visible = false
@@ -139,7 +142,8 @@ func pause_homing(seconds: float) -> void:
 		homing_on = true
 
 func _on_hitbox_body_entered(body: Node3D) -> void:
-	if body == self:
+	if body == self and "swordready" in weapon:
+		weapon.swordready = false
 		launched = true
 		homing_on = false
 		falling = false
@@ -152,6 +156,18 @@ func _on_hitbox_body_entered(body: Node3D) -> void:
 		ball_cam.make_current()
 		momentum_ui.visible = true
 		power_ui.visible = false
+		
+func _on_target_hitbox_body_entered(body: Node3D) -> void:
+	if body != self or homing_on:
+		return
+
+	falling = false
+	rotate_object_local(Vector3.UP, PI)
+	fall_speed = 0
+	momentum += 25
+	if momentum > 100:
+		momentum = 100
+	momentum_bar.value = momentum
 
 func go_to_scene(scene_path: String) -> void:
 	if changing_scene:
@@ -160,25 +176,6 @@ func go_to_scene(scene_path: String) -> void:
 	changing_scene = true
 	get_tree().call_deferred("change_scene_to_file", scene_path)
 
-
-func _on_target_hitbox_body_entered(body: Node3D) -> void:
-	if body != self:
-		return
-
-	homing_call += 1
-	homing_on = false
-	falling = false
-	fall_speed = 0
-
-	speed += 5
-	if speed > 40:
-		speed = 40
-
-	momentum += 20
-	if momentum > 100:
-		momentum = 100
-
-	momentum_bar.value = momentum
 
 	var current_direction = -global_transform.basis.z
 	var next_target = bounceTarget.get_node("bounceHitbox").global_position

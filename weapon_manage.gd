@@ -6,9 +6,11 @@ extends Node3D
 @export var swordready = false
 
 var power := 0.0
+var wait_id := 0
 
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("swing"):
+		swordready = true
 		animation_player.play("sword_load")
 		power += 35.0 * delta
 		if power > 100:
@@ -18,8 +20,15 @@ func _process(delta: float) -> void:
 		animation_player.play("sword_swing")
 		ball.hit_power = power
 		power = 0
-
-	power_bar.value = power
+		open_swing_window(0.5)
+		
+func open_swing_window(seconds: float) -> void:
+	swordready = true
+	wait_id += 1
+	var my_id := wait_id
+	await get_tree().create_timer(seconds).timeout
+	if my_id == wait_id:      # ignore stale timers from older swings
+		swordready = false
 
 func _on_hitbox_body_entered(body: Node3D) -> void:
 	if body is Ball:

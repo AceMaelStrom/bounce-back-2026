@@ -8,6 +8,9 @@ const MOUSE_SENS:float = .01
 
 @onready var neck: Node3D = $neck
 
+#func _ready():
+
+
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		var mouse_motion:Vector2 = event.relative

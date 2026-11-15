@@ -194,6 +194,8 @@ _data = {
 albedo_color = Color(0.99607843, 0, 0, 1)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_6cixf"]
+height = 1.457
+radius = 1.471
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5bw7q"]
 albedo_color = Color(0.3529412, 0.85490197, 0, 1)
@@ -249,6 +251,11 @@ size = Vector3(6.5723877, 0.19140625, 65.859505)
 transform = Transform3D(1.2398527, 0, 0, 0, -0.0023947104, -0.1954816, 0, 0.9980565, -0.00046903346, -1.03656, 8.497664, -154.20284)
 use_collision = true
 size = Vector3(6.5723877, 0.19140625, 65.859505)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="." unique_id=2034990724]
+transform = Transform3D(1.2398527, 0, 0, 0, -0.0023947104, -0.1954816, 0, 0.9980565, -0.00046903346, -1.1015456, 6.726729, 3.8980258)
+use_collision = true
+size = Vector3(17.02304, 0.19140625, 139.49954)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="." unique_id=2079049772]
 transform = Transform3D(1.2398527, 0, 0, 0, -0.0023947104, -0.1954816, 0, 0.9980565, -0.00046903346, -3.3969662, 5.673312, -185.42575)
@@ -377,7 +384,7 @@ shape = SubResource("CylinderShape3D_keesm")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="player" unique_id=263857350]
 libraries/ = SubResource("AnimationLibrary_6qnmk")
 
-[node name="SpeedTarget" type="Node3D" parent="." unique_id=244132370]
+[node name="SpeedTarget" type="Node3D" parent="." unique_id=244132370 groups=["speed_target"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2137985, 10.27731, -88.4711)
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="SpeedTarget" unique_id=580635116]
@@ -410,45 +417,45 @@ material = SubResource("StandardMaterial3D_5qn3j")
 [node name="targetHitbox" type="Area3D" parent="SpeedTarget" unique_id=499821968]
 transform = Transform3D(1, 0, 0, 0, -0.06809675, -0.9976787, 0, 0.9976787, -0.06809675, 0.6353817, 0.46980858, -0.07567024)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SpeedTarget/targetHitbox" unique_id=1501378242]
-transform = Transform3D(3, 0, 0, 0, 0.009, 0, 0, 0, 3, 0.22457056, 0.68471086, 0.12490845)
+[node name="hitareatarget" type="CollisionShape3D" parent="SpeedTarget/targetHitbox" unique_id=1501378242 groups=["speed_target"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07125807, 0.28678894, 0.15206671)
 shape = SubResource("CylinderShape3D_6cixf")
 
-[node name="BounceTarget" type="Node3D" parent="." unique_id=258246688]
+[node name="BounceTarget" type="Node3D" parent="." unique_id=258246688 groups=["bounce target"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -57.452873)
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="BounceTarget" unique_id=1982649421]
-transform = Transform3D(2, 0, 0, 0, 0.006, 0, 0, 0, 2, 0, 0.5468545, -122.50036)
+transform = Transform3D(2, 0, 0, 0, 0.006, 0, 0, 0, 2, 0, 0.5468545, 0.8320503)
 sides = 16
 material = SubResource("StandardMaterial3D_5bw7q")
 
 [node name="CSGCylinder3D2" type="CSGCylinder3D" parent="BounceTarget" unique_id=1963769012]
-transform = Transform3D(2, 0, 0, 0, 0.006, 0, 0, 0, 2, 0, 0.55066746, -122.50402)
+transform = Transform3D(2, 0, 0, 0, 0.006, 0, 0, 0, 2, 0, 0.55066746, 0.8283882)
 radius = 0.394
 sides = 16
 
 [node name="CSGCylinder3D3" type="CSGCylinder3D" parent="BounceTarget" unique_id=649877353]
-transform = Transform3D(2, 0, 0, 0, 0.006, 0, 0, 0, 2, 0, 0.55416524, -122.50001)
+transform = Transform3D(2, 0, 0, 0, 0.006, 0, 0, 0, 2, 0, 0.55416524, 0.8324013)
 radius = 0.3
 sides = 16
 material = SubResource("StandardMaterial3D_5bw7q")
 
 [node name="CSGCylinder3D4" type="CSGCylinder3D" parent="BounceTarget" unique_id=2115504475]
-transform = Transform3D(2, 0, 0, 0, 0.006, 0, 0, 0, 2, 0, 0.5601734, -122.50036)
+transform = Transform3D(2, 0, 0, 0, 0.006, 0, 0, 0, 2, 0, 0.5601734, 0.8320503)
 radius = 0.2
 sides = 16
 
 [node name="CSGCylinder3D5" type="CSGCylinder3D" parent="BounceTarget" unique_id=1898291144]
-transform = Transform3D(2, 0, 0, 0, 0.006, 0, 0, 0, 2, 0, 0.5616255, -122.50036)
+transform = Transform3D(2, 0, 0, 0, 0.006, 0, 0, 0, 2, 0, 0.5616255, 0.8320503)
 radius = 0.1
 sides = 16
 material = SubResource("StandardMaterial3D_5bw7q")
 
 [node name="bounceHitbox" type="Area3D" parent="BounceTarget" unique_id=1689664618]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22599447, -0.13172662, -122.62357)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22599447, -0.13172662, 0.7088356)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="BounceTarget/bounceHitbox" unique_id=1360827204]
-transform = Transform3D(2, 0, 0, 0, 0.016356725, 0, 0, 0, 2, 0.22457056, 0.68471086, 0.12490845)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BounceTarget/bounceHitbox" unique_id=1360827204 groups=["bounce target"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22457056, 0.68471086, 0.12490845)
 shape = SubResource("CylinderShape3D_6cixf")
 
 [connection signal="body_entered" from="player/neck/eyes/WeaponManage/zweihander/hitbox" to="FlyingBall" method="_on_hitbox_body_entered"]
