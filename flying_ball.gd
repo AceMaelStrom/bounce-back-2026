@@ -9,6 +9,8 @@ extends CharacterBody3D
 @export var speedTarget: Node3D
 @export var bounceTarget: Node3D
 
+@export	var homing_call := 0
+
 @onready var ball_cam: Camera3D = $BallCam
 @onready var momentum_ui: CanvasLayer = $MomentumUI
 @onready var momentum_bar: ProgressBar = $MomentumUI/MomentumBar
@@ -79,7 +81,7 @@ func _physics_process(delta: float) -> void:
 			return
 
 		if homing_on == false and collider.get_collision_layer_value(1):
-			homing_on = true
+			pause_homing(1.5)
 			falling = false
 			fall_speed = 0
 			target_offset.x = randf_range(-5.0, 5.0)
@@ -88,6 +90,14 @@ func _physics_process(delta: float) -> void:
 
 		var bounce_dir = movement.normalized().bounce(collision.get_normal())
 		look_at(global_position + bounce_dir, global_transform.basis.y)
+#delays homing		
+func pause_homing(seconds: float) -> void:
+	homing_on = false
+	homing_call += 1
+	var homingfirst := homing_call
+	await get_tree().create_timer(seconds).timeout
+	if homingfirst == homing_call:   # a newer pause replaced this one
+		homing_on = true
 
 func _on_hitbox_body_entered(body: Node3D) -> void:
 	if body == self:
