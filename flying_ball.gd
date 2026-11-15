@@ -74,7 +74,7 @@ func _physics_process(delta: float) -> void:
 
 	var collision = move_and_collide(movement)
 
-	if collision:
+	if collision and momentum >= 0:
 		var collider = collision.get_collider()
 
 		if collider is Player and homing_on:
