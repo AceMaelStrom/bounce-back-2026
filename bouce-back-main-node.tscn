@@ -226,15 +226,9 @@ mesh = SubResource("ArrayMesh_3peo4")
 
 [node name="hitbox" type="Area3D" parent="player/neck/eyes/WeaponManage/zweihander" unique_id=524702629]
 
-<<<<<<< Updated upstream
-[node name="hitboxCollision" type="CollisionShape3D" parent="player/neck/eyes/WeaponManage/zweihander/hitbox" unique_id=2058099240]
-transform = Transform3D(0.29999977, 7.450581e-09, 4.4703484e-08, 7.8231096e-08, 0.60000014, -4.61936e-07, -8.195639e-08, 8.791685e-07, 0.2999999, -0.24552965, -1.2380728, 0.04644656)
-shape = SubResource("CylinderShape3D_jldg3")
-=======
 [node name="CollisionShape3D" type="CollisionShape3D" parent="player/neck/eyes/WeaponManage/zweihander/hitbox" unique_id=2058099240]
 transform = Transform3D(1.0000014, -4.246831e-07, 1.3411045e-07, 4.4330955e-07, 1.0000006, -1.3560057e-06, -1.4901161e-08, 1.4603138e-06, 1.0000007, -0.24552967, -1.2584668, 0.04644704)
 shape = SubResource("CylinderShape3D_keesm")
->>>>>>> Stashed changes
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="player" unique_id=263857350]
 libraries/ = SubResource("AnimationLibrary_6qnmk")
