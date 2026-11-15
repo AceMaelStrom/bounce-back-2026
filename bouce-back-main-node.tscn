@@ -166,6 +166,8 @@ _data = {
 &"sword_swing": SubResource("Animation_gn3r0")
 }
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wydkj"]
+
 [node name="Node3D" type="Node3D" unique_id=1806866938]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1799722037]
@@ -182,6 +184,7 @@ size = Vector3(6.5723877, 0.19140625, 41.53766)
 
 [node name="FlyingBall" type="CharacterBody3D" parent="." unique_id=1094014442 node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.034298, -62.63903)
+collision_layer = 12
 script = ExtResource("1_k50ke")
 target = NodePath("../player")
 
@@ -195,6 +198,7 @@ shape = SubResource("SphereShape3D_wydkj")
 mesh = SubResource("SphereMesh_yfq83")
 
 [node name="player" type="CharacterBody3D" parent="." unique_id=1358605452]
+collision_mask = 4
 script = ExtResource("1_xl1km")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="player" unique_id=1940416448]
@@ -219,9 +223,11 @@ transform = Transform3D(-0.54601586, 0.7787051, -0.30900517, 0.81711334, 0.57641
 
 [node name="swordmesh" type="MeshInstance3D" parent="player/neck/eyes/WeaponManage/zweihander" unique_id=533740283]
 transform = Transform3D(0.99999976, -3.2701064e-07, 2.9802322e-08, -7.706694e-08, 1.0000001, -1.7136335e-07, 1.7881393e-07, -2.6077032e-08, 0.9999998, -0.24181879, -0.327533, 0.04177904)
+layers = 8
 mesh = SubResource("ArrayMesh_3peo4")
 
 [node name="hitbox" type="Area3D" parent="player/neck/eyes/WeaponManage/zweihander" unique_id=524702629]
+collision_mask = 8
 
 [node name="hitboxCollision" type="CollisionShape3D" parent="player/neck/eyes/WeaponManage/zweihander/hitbox" unique_id=2058099240]
 transform = Transform3D(0.29999977, 7.450581e-09, 4.4703484e-08, 7.8231096e-08, 0.60000014, -4.61936e-07, -8.195639e-08, 8.791685e-07, 0.2999999, -0.24552965, -1.2380728, 0.04644656)
@@ -230,5 +236,11 @@ shape = SubResource("CylinderShape3D_jldg3")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="player" unique_id=263857350]
 libraries/ = SubResource("AnimationLibrary_6qnmk")
 
+[node name="Area3D" type="Area3D" parent="player" unique_id=769736114]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="player/Area3D" unique_id=660699580]
+shape = SubResource("CapsuleShape3D_wydkj")
+
 [connection signal="body_entered" from="player/neck/eyes/WeaponManage/zweihander/hitbox" to="FlyingBall" method="_on_hitbox_body_entered"]
 [connection signal="body_entered" from="player/neck/eyes/WeaponManage/zweihander/hitbox" to="player/neck/eyes/WeaponManage" method="_on_hitbox_body_entered"]
+[connection signal="body_entered" from="player/Area3D" to="FlyingBall" method="_on_area_3d_body_entered"]

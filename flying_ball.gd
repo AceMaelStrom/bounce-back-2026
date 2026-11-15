@@ -34,3 +34,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_hitbox_body_entered(body: Node3D) -> void:
 	get_tree().change_scene_to_file("res://death.tscn")
+
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	get_tree().change_scene_to_file("res://death.tscn")
