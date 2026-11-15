@@ -357,7 +357,7 @@ transform = Transform3D(-0.30399987, 0.95267206, 0, -0.95267206, -0.30399987, 0,
 script = ExtResource("3_jldg3")
 
 [node name="zweihander" type="Node3D" parent="player/neck/eyes/WeaponManage" unique_id=1546071822]
-transform = Transform3D(-0.54601586, 0.7787051, -0.30900496, 0.81711334, 0.5764102, 0.008726527, 0.18490912, -0.24772756, -0.95101935, 0.268, -0.279, -2)
+transform = Transform3D(-0.54601586, 0.7787051, -0.30900493, 0.81711334, 0.5764102, 0.008726527, 0.18490912, -0.24772756, -0.9510193, 0.268, -0.279, -2)
 
 [node name="parrysound" type="AudioStreamPlayer3D" parent="player/neck/eyes/WeaponManage/zweihander" unique_id=1876949466]
 transform = Transform3D(1.0000006, -2.6077032e-08, 1.4901161e-08, -4.8428774e-08, 1.0000005, 1.4901161e-08, 0, 2.9802322e-08, 1.0000007, 2.682209e-07, -3.5762787e-07, -1.3113022e-06)
@@ -378,37 +378,37 @@ shape = SubResource("CylinderShape3D_keesm")
 libraries/ = SubResource("AnimationLibrary_6qnmk")
 
 [node name="SpeedTarget" type="Node3D" parent="." unique_id=244132370]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2137985, 0, -4.245781)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2137985, 10.27731, -88.4711)
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="SpeedTarget" unique_id=580635116]
-transform = Transform3D(3, 0, 0, 0, 0.009, 0, 0, 0, 3, 0, 0.5468545, -122.50036)
+transform = Transform3D(2.9999995, 0, 0, 0, -0.000112168585, -2.9997668, 0, 0.0089993, -0.03738953, 0.7508502, 0.34797907, 0.04513359)
 sides = 16
 material = SubResource("StandardMaterial3D_5qn3j")
 
 [node name="CSGCylinder3D2" type="CSGCylinder3D" parent="SpeedTarget" unique_id=1196286676]
-transform = Transform3D(3, 0, 0, 0, 0.009, 0, 0, 0, 3, 0, 0.55066746, -122.50402)
+transform = Transform3D(2.9999995, 0, 0, 0, -0.000112168585, -2.9997668, 0, 0.0089993, -0.03738953, 0.7508502, 0.35159254, 0.048994064)
 radius = 0.394
 sides = 16
 
 [node name="CSGCylinder3D3" type="CSGCylinder3D" parent="SpeedTarget" unique_id=1531983229]
-transform = Transform3D(3, 0, 0, 0, 0.009, 0, 0, 0, 3, 0, 0.55416524, -122.50001)
+transform = Transform3D(2.9999995, 0, 0, 0, -0.000112168585, -2.9997668, 0, 0.0089993, -0.03738953, 0.7508502, 0.34753656, 0.052427292)
 radius = 0.3
 sides = 16
 material = SubResource("StandardMaterial3D_5qn3j")
 
 [node name="CSGCylinder3D4" type="CSGCylinder3D" parent="SpeedTarget" unique_id=665499277]
-transform = Transform3D(3, 0, 0, 0, 0.009, 0, 0, 0, 3, 0, 0.5601734, -122.50036)
+transform = Transform3D(2.9999995, 0, 0, 0, -0.000112168585, -2.9997668, 0, 0.0089993, -0.03738953, 0.7508502, 0.34781218, 0.058454514)
 radius = 0.2
 sides = 16
 
 [node name="CSGCylinder3D5" type="CSGCylinder3D" parent="SpeedTarget" unique_id=165908849]
-transform = Transform3D(3, 0, 0, 0, 0.009, 0, 0, 0, 3, 0, 0.5616255, -122.50036)
+transform = Transform3D(2.9999995, 0, 0, 0, -0.000112168585, -2.9997668, 0, 0.0089993, -0.03738953, 0.7508502, 0.347795, 0.0599041)
 radius = 0.1
 sides = 16
 material = SubResource("StandardMaterial3D_5qn3j")
 
 [node name="targetHitbox" type="Area3D" parent="SpeedTarget" unique_id=499821968]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22599447, -0.13172662, -122.62357)
+transform = Transform3D(1, 0, 0, 0, -0.06809675, -0.9976787, 0, 0.9976787, -0.06809675, 0.6353817, 0.46980858, -0.07567024)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SpeedTarget/targetHitbox" unique_id=1501378242]
 transform = Transform3D(3, 0, 0, 0, 0.009, 0, 0, 0, 3, 0.22457056, 0.68471086, 0.12490845)
