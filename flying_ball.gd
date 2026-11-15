@@ -92,7 +92,7 @@ func _physics_process(delta: float) -> void:
 
 		var blue_amount = momentum / 100.0
 		blue_amount = blue_amount * blue_amount
-		var blue_value = roundi(blue_amount * 255.0)
+		var blue_value = clampi(roundi(blue_amount * 255.0), 0, 255)
 		var ball_color = Color8(0, 0, blue_value)
 		ball_material.albedo_color = ball_color
 		ball_material.emission = ball_color
@@ -101,7 +101,7 @@ func _physics_process(delta: float) -> void:
 	if retracing:
 		speed = return_speed
 
-		if path_number >= 0:
+		if path_number >= 0 and path_number < path_points.size():
 			var path_position = path_points[path_number]
 			var path_distance = global_position.distance_to(path_position)
 
@@ -162,11 +162,14 @@ func _physics_process(delta: float) -> void:
 
 	if collision:
 		var collider = collision.get_collider()
+		var normal = collision.get_normal()
 
-		# Handle the bounce target before wall collisions can start retracing.
+		# Bounce target: reflect off the real surface normal.
+		# Checked first so wall logic can't start a retrace.
 		if bounceTarget and collider is Node3D:
 			if collider == bounceTarget or bounceTarget.is_ancestor_of(collider) or collider.is_in_group("bounce_target"):
-				_bounce_off_target()
+				_bounce_off_target(normal)
+				global_position += normal * 0.15   # push out so it doesn't re-hit
 				return
 
 		if collider is Player:
@@ -215,9 +218,9 @@ func _physics_process(delta: float) -> void:
 
 		elif bounce_cooldown >= 0.11:
 			var hit_direction = move_velocity.normalized()
-			move_direction = hit_direction.bounce(collision.get_normal()).normalized()
+			move_direction = hit_direction.bounce(normal).normalized()
 			course_direction = move_direction
-			global_position += collision.get_normal() * 0.12
+			global_position += normal * 0.12
 
 	if move_direction != Vector3.ZERO:
 		var up_direction = Vector3.UP
@@ -253,15 +256,13 @@ func _on_hitbox_body_entered(body: Node3D) -> void:
 	power_ui.visible = false
 
 func _on_target_hitbox_body_entered(body: Node3D) -> void:
-	if body != self or homing_on or target_bounce_cooldown > 0.0:
+	if body != self or homing_on:
 		return
 
 	falling = false
 	fall_speed = 0
 	return_delay = 0
-	momentum += 25
-	if momentum > 100:
-		momentum = 100
+	momentum = minf(momentum + 25.0, 100.0)
 	momentum_bar.value = momentum
 
 	var next_target = bounceTarget.get_node("bounceHitbox").global_position
@@ -269,27 +270,36 @@ func _on_target_hitbox_body_entered(body: Node3D) -> void:
 	move_direction = move_direction.slerp(target_direction, 0.2).normalized()
 	course_direction = move_direction
 
+# Area3D version: no real surface normal, so use the hitbox's own Y axis.
+# If it reflects the wrong way, try basis.z instead of basis.y.
 func _on_bounce_hitbox_body_entered(body: Node3D) -> void:
 	if body != self or homing_on or target_bounce_cooldown > 0.0 or not bounceTarget:
 		return
 
-	_bounce_off_target()
+	var hitbox: Node3D = bounceTarget.get_node("bounceHitbox")
+	_bounce_off_target(hitbox.global_transform.basis.y.normalized())
 
-func _bounce_off_target() -> void:
+func _bounce_off_target(normal: Vector3) -> void:
+	if target_bounce_cooldown > 0.0:
+		return
+	target_bounce_cooldown = 0.12
+
+	# Reflect off the surface. bounce() works whichever way the normal points.
+	move_direction = move_direction.bounce(normal).normalized()
+
+	# A homing ball just ricochets and keeps homing; steering takes over again.
+	if homing_on:
+		return
+
 	launched = true
-	homing_on = false
 	retracing = false
 	falling = false
 	fall_speed = 0.0
 	return_delay = 0.0
 
-	# A solid collision and its hitbox can report the same bounce.
-	if target_bounce_cooldown <= 0.0:
-		momentum = minf(momentum + 10.0, 100.0)
-		momentum_bar.value = momentum
-		target_bounce_cooldown = 0.12
+	momentum = minf(momentum + 10.0, 100.0)
+	momentum_bar.value = momentum
 
-	move_direction = (-bounceTarget.global_transform.basis.z).normalized()
 	course_direction = move_direction
 
 func go_to_scene(scene_path: String) -> void:
