@@ -263,6 +263,7 @@ size = Vector3(6.5723877, 0.19140625, 65.859505)
 [node name="FlyingBall" type="CharacterBody3D" parent="." unique_id=1094014442 node_paths=PackedStringArray("target", "speedTarget", "bounceTarget") groups=["ball"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.034298, -62.63903)
 collision_layer = 2
+collision_mask = 9
 script = ExtResource("1_k50ke")
 target = NodePath("../player")
 speedTarget = NodePath("../SpeedTarget")
@@ -424,39 +425,39 @@ shape = SubResource("CylinderShape3D_6cixf")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.352806)
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="BounceTarget" unique_id=1982649421]
-transform = Transform3D(0.16744998, -0.008516681, -0.9553222, 0, 0.0028704416, -2.8433268, 2.995323, 0.00047611506, 0.053406164, 8.2024975, 6.1595774, -170.06448)
+transform = Transform3D(2.9922872, -0.00061124255, -0.06856361, -5.8882277e-10, 0.0028704412, -2.8433266, 0.21497455, 0.008508051, 0.9543541, -0.5301808, 6.1595774, -142.64975)
 sides = 16
 material = SubResource("StandardMaterial3D_5bw7q")
 
 [node name="CSGCylinder3D2" type="CSGCylinder3D" parent="BounceTarget" unique_id=1963769012]
-transform = Transform3D(0.16744998, -0.008516681, -0.9553222, 0, 0.0028704416, -2.8433268, 2.995323, 0.00047611506, 0.053406164, 8.200045, 6.164264, -170.06433)
+transform = Transform3D(2.9922872, -0.00061124255, -0.06856361, -5.8882277e-10, 0.0028704412, -2.8433266, 0.21497455, 0.008508051, 0.9543541, -0.5303415, 6.164264, -142.64728)
 radius = 0.394
 sides = 16
 
 [node name="CSGCylinder3D3" type="CSGCylinder3D" parent="BounceTarget" unique_id=649877353]
-transform = Transform3D(0.16744998, -0.008516681, -0.9553222, 0, 0.0028704416, -2.8433268, 2.995323, 0.00047611506, 0.053406164, 8.195458, 6.1615763, -170.06409)
+transform = Transform3D(2.9922872, -0.00061124255, -0.06856361, -5.8882277e-10, 0.0028704412, -2.8433266, 0.21497455, 0.008508051, 0.9543541, -0.5306828, 6.1615763, -142.6427)
 radius = 0.3
 sides = 16
 material = SubResource("StandardMaterial3D_5bw7q")
 
 [node name="CSGCylinder3D4" type="CSGCylinder3D" parent="BounceTarget" unique_id=2115504475]
-transform = Transform3D(0.16744998, -0.008516681, -0.9553222, 0, 0.0028704416, -2.8433268, 2.995323, 0.00047611506, 0.053406164, 8.189882, 6.163825, -170.06378)
+transform = Transform3D(2.9922872, -0.00061124255, -0.06856361, -5.8882277e-10, 0.0028704412, -2.8433266, 0.21497455, 0.008508051, 0.9543541, -0.53108954, 6.163825, -142.63715)
 radius = 0.2
 sides = 16
 
 [node name="CSGCylinder3D5" type="CSGCylinder3D" parent="BounceTarget" unique_id=1898291144]
-transform = Transform3D(0.16744998, -0.008516681, -0.9553222, 0, 0.0028704416, -2.8433268, 2.995323, 0.00047611506, 0.053406164, 8.188511, 6.1642885, -170.06369)
+transform = Transform3D(2.9922872, -0.00061124255, -0.06856361, -5.8882277e-10, 0.0028704412, -2.8433266, 0.21497455, 0.008508051, 0.9543541, -0.53117317, 6.1642885, -142.63577)
 radius = 0.1
 sides = 16
 material = SubResource("StandardMaterial3D_5bw7q")
 
 [node name="bounceHitbox" type="Area3D" parent="BounceTarget" unique_id=1689664618]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22599447, -0.13172662, -122.62357)
-collision_layer = 0
+collision_layer = 8
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BounceTarget/bounceHitbox" unique_id=1360827204]
-transform = Transform3D(0.16744998, -0.008516681, -0.9553222, 0, 0.0028704416, -2.8433268, 2.995323, 0.00047611506, 0.053406164, 8.422073, 6.2916536, -47.441986)
+transform = Transform3D(2.9922872, -0.00061124255, -0.06856361, -5.8882277e-10, 0.0028704412, -2.8433266, 0.21497455, 0.008508051, 0.9543541, -0.3060472, 6.2916536, -20.019943)
 shape = SubResource("CylinderShape3D_6cixf")
 
 [connection signal="body_entered" from="player/neck/eyes/WeaponManage/zweihander/hitbox" to="player/neck/eyes/WeaponManage" method="_on_hitbox_body_entered"]
