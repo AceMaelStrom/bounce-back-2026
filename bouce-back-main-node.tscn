@@ -291,7 +291,7 @@ transform = Transform3D(-0.30399987, 0.95267206, 0, -0.95267206, -0.30399987, 0,
 script = ExtResource("3_jldg3")
 
 [node name="zweihander" type="Node3D" parent="player/neck/eyes/WeaponManage" unique_id=1546071822]
-transform = Transform3D(-0.54601586, 0.7787051, -0.30900502, 0.81711334, 0.5764102, 0.008726529, 0.18490912, -0.24772756, -0.9510195, 0.268, -0.279, -2)
+transform = Transform3D(-0.54601586, 0.7787051, -0.309005, 0.81711334, 0.5764102, 0.008726528, 0.18490912, -0.24772756, -0.95101947, 0.268, -0.279, -2)
 
 [node name="parrysound" type="AudioStreamPlayer3D" parent="player/neck/eyes/WeaponManage/zweihander" unique_id=1876949466]
 transform = Transform3D(1.0000006, -2.6077032e-08, 1.4901161e-08, -4.8428774e-08, 1.0000005, 1.4901161e-08, 0, 2.9802322e-08, 1.0000007, 2.682209e-07, -3.5762787e-07, -1.3113022e-06)
@@ -378,10 +378,10 @@ radius = 0.1
 sides = 16
 material = SubResource("StandardMaterial3D_5bw7q")
 
-[node name="targetHitbox" type="Area3D" parent="BounceTarget" unique_id=1689664618]
+[node name="bounceHitbox" type="Area3D" parent="BounceTarget" unique_id=1689664618]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22599447, -0.13172662, -122.62357)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="BounceTarget/targetHitbox" unique_id=1360827204]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BounceTarget/bounceHitbox" unique_id=1360827204]
 transform = Transform3D(2, 0, 0, 0, 0.016356725, 0, 0, 0, 2, 0.22457056, 0.68471086, 0.12490845)
 shape = SubResource("CylinderShape3D_6cixf")
 
