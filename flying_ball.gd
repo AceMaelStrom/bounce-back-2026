@@ -41,6 +41,7 @@ func _physics_process(delta: float) -> void:
 		rotate_object_local(Vector3.RIGHT, turn_y * turn_speed * delta)
 
 		momentum -= 10.0 * delta
+		speed = momentum / 2
 		if momentum < 0:
 			momentum = 0
 		momentum_bar.value = momentum
@@ -80,13 +81,33 @@ func _physics_process(delta: float) -> void:
 			go_to_scene("res://death.tscn")
 			return
 
-		if homing_on == false and collider.get_collision_layer_value(1):
-			pause_homing(1.5)
-			falling = false
-			fall_speed = 0
-			target_offset.x = randf_range(-5.0, 5.0)
-			target_offset.y = randf_range(1.0, 4.5)
-			target_offset.z = randf_range(-3.0, 3.0)
+		if collider.get_collision_layer_value(1):
+			if collider.is_in_group("glass") and momentum >= 40:
+				homing_on = false
+				collider.visible = false
+				collider.queue_free()
+				momentum += 40.0
+				momentum_bar.value = momentum
+				$glassbreak.play()
+				return
+				
+				
+			elif collider.is_in_group("glass") and momentum <= 40:
+				homing_on = false
+				collider.visible = false
+				collider.queue_free()
+				momentum -= 15.0
+				momentum_bar.value = momentum
+				$glassbreak.play()
+				return
+			
+			else:
+				pause_homing(1.5)
+				falling = false
+				fall_speed = 0
+				target_offset.x = randf_range(-5.0, 5.0)
+				target_offset.y = randf_range(1.0, 4.5)
+				target_offset.z = randf_range(-3.0, 3.0)
 
 		var bounce_dir = movement.normalized().bounce(collision.get_normal())
 		look_at(global_position + bounce_dir, global_transform.basis.y)
@@ -104,8 +125,8 @@ func _on_hitbox_body_entered(body: Node3D) -> void:
 		homing_on = false
 		falling = false
 		fall_speed = 0
-		speed = 15.0 + hit_power / 5.0
 		momentum = 30.0 + hit_power * 0.7
+		speed = momentum / 2 + hit_power / 5.0
 		momentum_bar.value = momentum
 		target_offset = Vector3.ZERO
 		rotate_object_local(Vector3.UP, PI)
