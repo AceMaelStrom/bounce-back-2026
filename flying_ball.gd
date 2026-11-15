@@ -96,13 +96,13 @@ func _physics_process(delta: float) -> void:
 
 		var bounce_dir = movement.normalized().bounce(collision.get_normal())
 		look_at(global_position + bounce_dir, global_transform.basis.y)
-#delays homing		
+
 func pause_homing(seconds: float) -> void:
 	homing_on = false
 	homing_call += 1
 	var homingfirst := homing_call
 	await get_tree().create_timer(seconds).timeout
-	if homingfirst == homing_call:   # a newer pause replaced this one
+	if homingfirst == homing_call:
 		homing_on = true
 
 func _on_hitbox_body_entered(body: Node3D) -> void:
@@ -128,12 +128,27 @@ func go_to_scene(scene_path: String) -> void:
 
 
 func _on_target_hitbox_body_entered(body: Node3D) -> void:
+	if body != self:
+		return
+
+	homing_call += 1
 	homing_on = false
 	falling = false
 	fall_speed = 0
-	speed = speed + 30
-	momentum = 50.0
+
+	speed += 5
+	if speed > 40:
+		speed = 40
+
+	momentum += 20
+	if momentum > 100:
+		momentum = 100
+
 	momentum_bar.value = momentum
-	target_offset = Vector3.ZERO
-	rotate_object_local(Vector3.UP, PI)
-	momentum_ui.visible = true
+
+	var current_direction = -global_transform.basis.z
+	var next_target = bounceTarget.get_node("bounceHitbox").global_position
+	var target_direction = (next_target - global_position).normalized()
+	var new_direction = current_direction.lerp(target_direction, 0.15).normalized()
+
+	look_at(global_position + new_direction, Vector3.UP)

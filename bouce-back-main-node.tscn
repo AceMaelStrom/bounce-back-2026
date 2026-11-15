@@ -392,10 +392,10 @@ radius = 0.1
 sides = 16
 material = SubResource("StandardMaterial3D_5bw7q")
 
-[node name="targetHitbox" type="Area3D" parent="BounceTarget" unique_id=1689664618]
+[node name="bounceHitbox" type="Area3D" parent="BounceTarget" unique_id=1689664618]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22599447, -0.13172662, -122.62357)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="BounceTarget/targetHitbox" unique_id=1360827204]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BounceTarget/bounceHitbox" unique_id=1360827204]
 transform = Transform3D(2, 0, 0, 0, 0.016356725, 0, 0, 0, 2, 0.22457056, 0.68471086, 0.12490845)
 shape = SubResource("CylinderShape3D_6cixf")
 
