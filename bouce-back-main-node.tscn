@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://boy7227nav4av" path="res://sword/SWORD_None_Base_color_1001.png" id="2_oeayk"]
 [ext_resource type="Script" uid="uid://cljdpboaqytin" path="res://weapon_manage.gd" id="3_jldg3"]
 [ext_resource type="Texture2D" uid="uid://q504yxscbx6t" path="res://sword/SWORD_None_Metallic_1001-None_Roughness_1001.png" id="3_scyta"]
+[ext_resource type="Texture2D" uid="uid://cqbjb8pyjaths" path="res://crosshair.png" id="4_gn3r0"]
 [ext_resource type="Texture2D" uid="uid://266mmglodtfw" path="res://sword/SWORD_None_Normal_OpenGL_1001.png" id="4_jldg3"]
 [ext_resource type="AudioStream" uid="uid://b2v6x5gf6yvxu" path="res://sekiro-big-deflect-made-with-Voicemod.mp3" id="7_3peo4"]
 
@@ -205,6 +206,18 @@ use_collision = true
 size = Vector3(19.963623, 19.297974, 1)
 material = SubResource("StandardMaterial3D_3peo4")
 
+[node name="glass2" type="CSGBox3D" parent="." unique_id=334837695 groups=["glass"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8594971, 22.57314, -45.856644)
+use_collision = true
+size = Vector3(19.963623, 19.297974, 1)
+material = SubResource("StandardMaterial3D_3peo4")
+
+[node name="glass3" type="CSGBox3D" parent="." unique_id=2028375913 groups=["glass"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8594971, 22.57314, -41.936703)
+use_collision = true
+size = Vector3(19.963623, 19.297974, 1)
+material = SubResource("StandardMaterial3D_3peo4")
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1799722037]
 environment = SubResource("Environment_s5aff")
 
@@ -286,6 +299,30 @@ volume_db = 2.991
 
 [node name="player" type="CharacterBody3D" parent="." unique_id=1358605452 groups=["player"]]
 script = ExtResource("1_xl1km")
+
+[node name="crosscenter" type="CanvasLayer" parent="player" unique_id=1555066697]
+
+[node name="crosshair" type="Control" parent="player/crosscenter" unique_id=2145619246]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="player/crosscenter/crosshair" unique_id=992268083]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="crosshair" type="TextureRect" parent="player/crosscenter/crosshair/CenterContainer" unique_id=1186321189]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+texture = ExtResource("4_gn3r0")
+expand_mode = 1
 
 [node name="PowerUI" type="CanvasLayer" parent="player" unique_id=1849306088]
 
