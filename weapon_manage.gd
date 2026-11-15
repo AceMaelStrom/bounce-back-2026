@@ -34,6 +34,7 @@ func _process(delta: float) -> void:
 		hitbox.monitoring = true
 
 	power_bar.value = power
+	#1
 
 func _on_hitbox_body_entered(body: Node3D) -> void:
 	if body is Ball and hit_time > 0:
