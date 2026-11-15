@@ -8,6 +8,8 @@ extends CharacterBody3D
 @export var homing_strength: float = 4.0
 @export var close_homing_strength: float = 10.0
 @export var target: Node3D
+@onready var ball_cam: Camera3D = $BallCam
+
 
 var hittable := true
 
@@ -48,10 +50,13 @@ func _physics_process(delta: float) -> void:
 			return
 			
 		elif collision.get_collider().is_in_group("sword"):
+			print("Hit sword! Camera node is: ", ball_cam)
 			rotate_object_local(Vector3.UP, PI)
+			ball_cam.make_current()
 			homing_on = false
 			get_tree().create_timer(1).timeout.connect(func(): homing_on = true)
 			return
+
 
 		# Bounce off walls and the floor
 		var bounce_dir = forward.bounce(collision.get_normal())

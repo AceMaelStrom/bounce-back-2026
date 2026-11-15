@@ -74,7 +74,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_nne0n")
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_jldg3"]
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_keesm"]
 height = 2.8054357
 radius = 0.2
@@ -186,6 +185,12 @@ size = Vector3(6.5723877, 0.19140625, 41.53766)
 [node name="FlyingBall" type="CharacterBody3D" parent="." unique_id=1094014442 node_paths=PackedStringArray("target") groups=["ball"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.034298, -62.63903)
 script = ExtResource("1_k50ke")
+speed = null
+hit_cooldown = null
+homing_on = null
+turn_speed = null
+homing_strength = null
+close_homing_strength = null
 target = NodePath("../player")
 
 [node name="BallCam" type="Camera3D" parent="FlyingBall" unique_id=366789397]
@@ -218,7 +223,7 @@ transform = Transform3D(-0.30399987, 0.95267206, 0, -0.95267206, -0.30399987, 0,
 script = ExtResource("3_jldg3")
 
 [node name="zweihander" type="Node3D" parent="player/neck/eyes/WeaponManage" unique_id=1546071822]
-transform = Transform3D(-0.54601586, 0.7787051, -0.30900514, 0.81711334, 0.5764102, 0.008726533, 0.18490912, -0.24772756, -0.9510199, 0.268, -0.279, -2)
+transform = Transform3D(-0.54601586, 0.7787051, -0.3090051, 0.81711334, 0.5764102, 0.008726532, 0.18490912, -0.24772756, -0.95101976, 0.268, -0.279, -2)
 
 [node name="swordmesh" type="MeshInstance3D" parent="player/neck/eyes/WeaponManage/zweihander" unique_id=533740283]
 transform = Transform3D(0.99999976, -3.2701064e-07, 2.9802322e-08, -7.706694e-08, 1.0000001, -1.7136335e-07, 1.7881393e-07, -2.6077032e-08, 0.9999998, -0.24181879, -0.327533, 0.04177904)
