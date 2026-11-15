@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://oknfoiaxmxae"]
+
+[node name="Node2D" type="Node2D" unique_id=382045345]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=271798955]
+offset_left = 216.0
+offset_top = 149.0
+offset_right = 1324.0
+offset_bottom = 595.0
+bbcode_enabled = true
+text = "[font_size=300]Hit
+[/font_size]
+
+"

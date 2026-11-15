@@ -178,14 +178,13 @@ transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545
 shadow_enabled = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1564716925]
-<<<<<<< Updated upstream
 transform = Transform3D(1.2398527, 0, 0, 0, 1, 0, 0, 0, 1.0225722, -1.03656, -0.40429688, -16.560076)
 use_collision = true
 size = Vector3(6.5723877, 0.19140625, 41.53766)
 
 [node name="FlyingBall" type="CharacterBody3D" parent="." unique_id=1094014442 node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.034298, -62.63903)
-collision_layer = 12
+collision_layer = 4
 script = ExtResource("1_k50ke")
 target = NodePath("../player")
 
@@ -196,20 +195,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.9621499, -6.427044)
 shape = SubResource("SphereShape3D_wydkj")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="FlyingBall" unique_id=975145670]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8768053, 0)
+layers = 5
 mesh = SubResource("SphereMesh_yfq83")
-=======
-transform = Transform3D(1.2398527, 0, 0, 0, 1, 0, 0, 0, 1.0225722, -1.03656, -0.40429688, 29.228643)
-use_collision = true
-size = Vector3(6.5723877, 0.19140625, 66.0188)
-
-[node name="ball" type="CSGSphere3D" parent="." unique_id=415369364]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8099048, 29.84674)
-
-[node name="RigidBody3D" type="RigidBody3D" parent="ball" unique_id=47323360]
->>>>>>> Stashed changes
 
 [node name="player" type="CharacterBody3D" parent="." unique_id=1358605452]
-collision_mask = 4
+collision_mask = 5
 script = ExtResource("1_xl1km")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="player" unique_id=1940416448]
@@ -222,7 +213,6 @@ shape = SubResource("CapsuleShape3D_yfq83")
 [node name="neck" type="Node3D" parent="player" unique_id=562490062]
 
 [node name="eyes" type="Camera3D" parent="player/neck" unique_id=1606123494]
-<<<<<<< Updated upstream
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4620483, -0.34439564)
 current = true
 
@@ -231,24 +221,26 @@ transform = Transform3D(-0.30399987, 0.95267206, 0, -0.95267206, -0.30399987, 0,
 script = ExtResource("3_jldg3")
 
 [node name="zweihander" type="Node3D" parent="player/neck/eyes/WeaponManage" unique_id=1546071822]
-transform = Transform3D(-0.54601586, 0.7787051, -0.30900517, 0.81711334, 0.5764102, 0.008726533, 0.18490912, -0.24772756, -0.95101994, 0.268, -0.279, -2)
+transform = Transform3D(-0.54601586, 0.7787051, -0.30900514, 0.81711334, 0.5764102, 0.008726533, 0.18490912, -0.24772756, -0.9510199, 0.268, -0.279, -2)
 
 [node name="swordmesh" type="MeshInstance3D" parent="player/neck/eyes/WeaponManage/zweihander" unique_id=533740283]
 transform = Transform3D(0.99999976, -3.2701064e-07, 2.9802322e-08, -7.706694e-08, 1.0000001, -1.7136335e-07, 1.7881393e-07, -2.6077032e-08, 0.9999998, -0.24181879, -0.327533, 0.04177904)
-layers = 8
 mesh = SubResource("ArrayMesh_3peo4")
 
 [node name="hitbox" type="Area3D" parent="player/neck/eyes/WeaponManage/zweihander" unique_id=524702629]
-collision_mask = 8
+transform = Transform3D(0.6006036, -1.4901161e-07, 8.940697e-08, 1.6577542e-07, 2.887728, 5.9604645e-08, 6.7055225e-08, 1.1920929e-07, 0.8864485, -0.5172146, 0.91253924, -0.033912897)
+collision_mask = 4
 
 [node name="hitboxCollision" type="CollisionShape3D" parent="player/neck/eyes/WeaponManage/zweihander/hitbox" unique_id=2058099240]
-transform = Transform3D(0.29999977, 7.450581e-09, 4.4703484e-08, 7.8231096e-08, 0.60000014, -4.61936e-07, -8.195639e-08, 8.791685e-07, 0.2999999, -0.24552965, -1.2380728, 0.04644656)
+transform = Transform3D(0.29999977, -9.313226e-09, 4.0978193e-08, 8.1025064e-08, 0.60000014, -4.4703484e-07, -8.195639e-08, 8.791685e-07, 0.2999999, -0.24581707, -1.2456658, 0.04551375)
 shape = SubResource("CylinderShape3D_jldg3")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="player" unique_id=263857350]
 libraries/ = SubResource("AnimationLibrary_6qnmk")
 
 [node name="Area3D" type="Area3D" parent="player" unique_id=769736114]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0054648, 0)
+collision_mask = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="player/Area3D" unique_id=660699580]
 shape = SubResource("CapsuleShape3D_wydkj")
@@ -256,6 +248,3 @@ shape = SubResource("CapsuleShape3D_wydkj")
 [connection signal="body_entered" from="player/neck/eyes/WeaponManage/zweihander/hitbox" to="FlyingBall" method="_on_hitbox_body_entered"]
 [connection signal="body_entered" from="player/neck/eyes/WeaponManage/zweihander/hitbox" to="player/neck/eyes/WeaponManage" method="_on_hitbox_body_entered"]
 [connection signal="body_entered" from="player/Area3D" to="FlyingBall" method="_on_area_3d_body_entered"]
-=======
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.250633, -0.3304919)
->>>>>>> Stashed changes
