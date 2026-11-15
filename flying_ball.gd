@@ -263,6 +263,7 @@ func _on_bounce_hitbox_body_entered(body: Node3D) -> void:
 		return
 
 	falling = false
+	homing_on = false
 	fall_speed = 0
 	return_delay = 0
 	momentum += 10
