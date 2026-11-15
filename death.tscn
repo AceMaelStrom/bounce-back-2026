@@ -1,13 +1,27 @@
 [gd_scene format=3 uid="uid://ecx1myb1kacu"]
 
+[ext_resource type="Script" uid="uid://dg0hipuxsc15b" path="res://death.gd" id="1_qemge"]
+
 [node name="Node2D" type="Node2D" unique_id=503831269]
+script = ExtResource("1_qemge")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1219600963]
-offset_left = 216.0
-offset_top = 149.0
-offset_right = 1324.0
-offset_bottom = 595.0
+offset_left = 204.0
+offset_top = -20.0
+offset_right = 1312.0
+offset_bottom = 426.0
 bbcode_enabled = true
 text = "[font_size=300]DEATH[/font_size]
 
 "
+
+[node name="Button" type="Button" parent="." unique_id=263165044]
+offset_left = 520.0
+offset_top = 421.0
+offset_right = 877.0
+offset_bottom = 531.0
+text = "Reset
+
+"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
