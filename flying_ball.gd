@@ -34,7 +34,7 @@ func _ready() -> void:
 	momentum_ui.visible = false
 	
 	$ballmesh3.get_active_material(0).emission_enabled = true
-	$ballmesh3.get_active_material(0).emission_energy_multiplier = 2000.0
+	$ballmesh3.get_active_material(0).emission_energy_multiplier = 3000.0
 
 func _physics_process(delta: float) -> void:
 	if ball_cam.current and homing_on == false and falling == false:
