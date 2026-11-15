@@ -269,9 +269,8 @@ func _on_bounce_hitbox_body_entered(body: Node3D) -> void:
 		momentum = 100
 	momentum_bar.value = momentum
 
-	if bounce_direction != Vector3.ZERO:
-		move_direction = bounce_direction.normalized()
-		course_direction = move_direction
+	move_direction = (-bounceTarget.global_transform.basis.z).normalized()
+	course_direction = move_direction
 
 func go_to_scene(scene_path: String) -> void:
 	if changing_scene:
