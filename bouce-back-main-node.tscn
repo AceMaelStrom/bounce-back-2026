@@ -31,7 +31,18 @@ glow_enabled = true
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wydkj"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3peo4"]
+transparency = 1
+
 [sub_resource type="SphereMesh" id="SphereMesh_yfq83"]
+material = SubResource("StandardMaterial3D_3peo4")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gn3r0"]
+transparency = 1
+albedo_color = Color(0.9843137, 1, 0.88235295, 0.2)
+roughness = 0.15
+refraction_enabled = true
+refraction_scale = -1.0
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_wydkj"]
 radius = 0.5439453
@@ -253,6 +264,7 @@ shape = SubResource("SphereShape3D_wydkj")
 
 [node name="ballmesh3" type="MeshInstance3D" parent="FlyingBall" unique_id=975145670]
 mesh = SubResource("SphereMesh_yfq83")
+surface_material_override/0 = SubResource("StandardMaterial3D_gn3r0")
 
 [node name="MomentumUI" type="CanvasLayer" parent="FlyingBall" unique_id=1034131809]
 visible = false
