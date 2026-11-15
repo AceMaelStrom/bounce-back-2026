@@ -81,6 +81,12 @@ func _physics_process(delta: float) -> void:
 			return
 
 		if homing_on == false and collider.get_collision_layer_value(1):
+			if collider.is_in_group("glass") and momentum >= 40:
+				collider.visible = false
+				collider.queue_free()
+				momentum += 40.0
+				momentum_bar.value = momentum
+				
 			pause_homing(1.5)
 			falling = false
 			fall_speed = 0
@@ -104,8 +110,8 @@ func _on_hitbox_body_entered(body: Node3D) -> void:
 		homing_on = false
 		falling = false
 		fall_speed = 0
-		speed = 15.0 + hit_power / 5.0
 		momentum = 30.0 + hit_power * 0.7
+		speed = momentum + hit_power / 5.0
 		momentum_bar.value = momentum
 		target_offset = Vector3.ZERO
 		rotate_object_local(Vector3.UP, PI)

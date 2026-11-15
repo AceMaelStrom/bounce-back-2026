@@ -8,6 +8,14 @@
 [ext_resource type="Texture2D" uid="uid://266mmglodtfw" path="res://sword/SWORD_None_Normal_OpenGL_1001.png" id="4_jldg3"]
 [ext_resource type="AudioStream" uid="uid://b2v6x5gf6yvxu" path="res://sekiro-big-deflect-made-with-Voicemod.mp3" id="7_3peo4"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3peo4"]
+transparency = 1
+albedo_color = Color(0.8039216, 0.9098039, 0.9098039, 0.45882353)
+metallic = 0.73
+roughness = 0.4
+refraction_enabled = true
+refraction_scale = 0.31
+
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_65dw0"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -181,6 +189,12 @@ albedo_color = Color(0.3529412, 0.85490197, 0, 1)
 
 [node name="Node3D" type="Node3D" unique_id=1806866938]
 
+[node name="glass" type="CSGBox3D" parent="." unique_id=246659496 groups=["glass"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8594971, 9.054703, -28.00856)
+use_collision = true
+size = Vector3(19.963623, 19.297974, 1)
+material = SubResource("StandardMaterial3D_3peo4")
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1799722037]
 environment = SubResource("Environment_s5aff")
 
@@ -291,7 +305,7 @@ transform = Transform3D(-0.30399987, 0.95267206, 0, -0.95267206, -0.30399987, 0,
 script = ExtResource("3_jldg3")
 
 [node name="zweihander" type="Node3D" parent="player/neck/eyes/WeaponManage" unique_id=1546071822]
-transform = Transform3D(-0.54601586, 0.7787051, -0.30900502, 0.81711334, 0.5764102, 0.008726529, 0.18490912, -0.24772756, -0.9510195, 0.268, -0.279, -2)
+transform = Transform3D(-0.54601586, 0.7787051, -0.309005, 0.81711334, 0.5764102, 0.008726528, 0.18490912, -0.24772756, -0.95101947, 0.268, -0.279, -2)
 
 [node name="parrysound" type="AudioStreamPlayer3D" parent="player/neck/eyes/WeaponManage/zweihander" unique_id=1876949466]
 transform = Transform3D(1.0000006, -2.6077032e-08, 1.4901161e-08, -4.8428774e-08, 1.0000005, 1.4901161e-08, 0, 2.9802322e-08, 1.0000007, 2.682209e-07, -3.5762787e-07, -1.3113022e-06)

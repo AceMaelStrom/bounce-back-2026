@@ -3,6 +3,7 @@ extends Node3D
 @onready var animation_player: AnimationPlayer = $"../../../AnimationPlayer"
 @onready var power_bar: ProgressBar = $"../../../PowerUI/PowerBar"
 @onready var ball: Ball = get_tree().get_first_node_in_group("ball")
+@export var swordready = false
 
 var power := 0.0
 
