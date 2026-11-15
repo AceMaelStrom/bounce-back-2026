@@ -199,8 +199,39 @@ shape = SubResource("SphereShape3D_wydkj")
 [node name="ballmesh3" type="MeshInstance3D" parent="FlyingBall" unique_id=975145670]
 mesh = SubResource("SphereMesh_yfq83")
 
+[node name="MomentumUI" type="CanvasLayer" parent="FlyingBall" unique_id=1034131809]
+visible = false
+
+[node name="MomentumText" type="Label" parent="FlyingBall/MomentumUI" unique_id=1648471326]
+offset_left = 800.0
+offset_top = 535.0
+offset_right = 930.0
+offset_bottom = 558.0
+text = "MOMENTUM"
+
+[node name="MomentumBar" type="ProgressBar" parent="FlyingBall/MomentumUI" unique_id=226479077]
+offset_left = 800.0
+offset_top = 560.0
+offset_right = 1080.0
+offset_bottom = 590.0
+
 [node name="player" type="CharacterBody3D" parent="." unique_id=1358605452 groups=["player"]]
 script = ExtResource("1_xl1km")
+
+[node name="PowerUI" type="CanvasLayer" parent="player" unique_id=1849306088]
+
+[node name="PowerText" type="Label" parent="player/PowerUI" unique_id=1612968786]
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 110.0
+offset_bottom = 53.0
+text = "POWER"
+
+[node name="PowerBar" type="ProgressBar" parent="player/PowerUI" unique_id=1775903223]
+offset_left = 30.0
+offset_top = 55.0
+offset_right = 330.0
+offset_bottom = 85.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="player" unique_id=1940416448]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.96842945, 0)
@@ -220,7 +251,7 @@ transform = Transform3D(-0.30399987, 0.95267206, 0, -0.95267206, -0.30399987, 0,
 script = ExtResource("3_jldg3")
 
 [node name="zweihander" type="Node3D" parent="player/neck/eyes/WeaponManage" unique_id=1546071822]
-transform = Transform3D(-0.54601586, 0.7787051, -0.30900508, 0.81711334, 0.5764102, 0.00872653, 0.18490912, -0.24772756, -0.95101964, 0.268, -0.279, -2)
+transform = Transform3D(-0.54601586, 0.7787051, -0.30900505, 0.81711334, 0.5764102, 0.008726529, 0.18490912, -0.24772756, -0.9510196, 0.268, -0.279, -2)
 
 [node name="parrysound" type="AudioStreamPlayer3D" parent="player/neck/eyes/WeaponManage/zweihander" unique_id=1876949466]
 transform = Transform3D(1.0000006, -2.6077032e-08, 1.4901161e-08, -4.8428774e-08, 1.0000005, 1.4901161e-08, 0, 2.9802322e-08, 1.0000007, 2.682209e-07, -3.5762787e-07, -1.3113022e-06)
