@@ -2,10 +2,14 @@ class_name Ball
 extends CharacterBody3D
 
 @export var speed: float = 20.0
+@export var hit_cooldown: float = 1.2
+@export var homing_on := true
 @export var turn_speed: float = 1.5
-@export var homing_strength: float = 2.0
+@export var homing_strength: float = 4.0
 @export var close_homing_strength: float = 10.0
 @export var target: Node3D
+
+var hittable := true
 
 var changing_scene := false
 
@@ -22,7 +26,7 @@ func _physics_process(delta: float) -> void:
 	rotate_object_local(Vector3.RIGHT, turn_y * turn_speed * delta)
 
 	# Turn back toward the player
-	if target:
+	if target and homing_on == true:
 		var current_homing = homing_strength
 		var distance_to_player = global_position.distance_to(target.global_position)
 
@@ -42,6 +46,12 @@ func _physics_process(delta: float) -> void:
 		if collision.get_collider() is Player:
 			go_to_scene("res://death.tscn")
 			return
+			
+		elif collision.get_collider().is_in_group("sword"):
+			rotate_object_local(Vector3.UP, PI)
+			homing_on = false
+			get_tree().create_timer(1).timeout.connect(func(): homing_on = true)
+			return
 
 		# Bounce off walls and the floor
 		var bounce_dir = forward.bounce(collision.get_normal())
@@ -49,7 +59,17 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_hitbox_body_entered(body: Node3D) -> void:
-	go_to_scene("res://hit.tscn")
+	
+	if not hittable:
+		return
+	hittable = false
+	get_tree().create_timer(hit_cooldown).timeout.connect(func(): hittable = true)
+	
+	speed += 10.0
+	rotate_object_local(Vector3.UP, PI)
+	homing_on = false
+	get_tree().create_timer(1.5).timeout.connect(func(): homing_on = true)
+	print("hit")
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
