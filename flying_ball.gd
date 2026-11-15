@@ -2,19 +2,12 @@ class_name Ball
 extends CharacterBody3D
 
 @export var speed: float = 20.0
-@export var hit_cooldown: float = 1.2
 @export var homing_on := true
 @export var turn_speed: float = 1.5
 @export var homing_strength: float = 4.0
 @export var close_homing_strength: float = 10.0
 @export var target: Node3D
-
 @onready var ball_cam: Camera3D = $BallCam
-@export var parry: AudioStreamPlayer3D
-
-
-
-var hittable := true
 
 var changing_scene := false
 
@@ -48,36 +41,29 @@ func _physics_process(delta: float) -> void:
 	
 	# Check what the ball hit
 	if collision:
-		if collision.get_collider() is Player:
-			go_to_scene("res://death.tscn")
-			return	
+		var collider = collision.get_collider()
 
-		# Bounce off walls and the floor
+		# The player only dies when the ball is returning
+		if collider is Player and homing_on:
+			go_to_scene("res://death.tscn")
+			return
+
+		# Start returning after hitting anything on layer 1
+		if collider.get_collision_layer_value(1):
+			homing_on = true
+
+		# Bounce off walls, obstacles, and the floor
 		var bounce_dir = forward.bounce(collision.get_normal())
 		look_at(global_position + bounce_dir, global_transform.basis.y)
 
 
 func _on_hitbox_body_entered(body: Node3D) -> void:
-	
-	if not hittable:
-		return
-	hittable = false
-	get_tree().create_timer(hit_cooldown).timeout.connect(func(): hittable = true)
-	
-	print("Hit sword! Camera node is: ", ball_cam)
-	
-	
-	speed += 10.0
-	rotate_object_local(Vector3.UP, PI)
-	homing_on = false
-	get_tree().create_timer(1.5).timeout.connect(func(): homing_on = true)
-	print("hit")
-
-
-func _on_area_3d_body_entered(body: Node3D) -> void:
-	# Only change scenes if this ball entered the player's area
+	# The sword hit the ball
 	if body == self:
-		go_to_scene("res://death.tscn")
+		homing_on = false
+		speed += 10.0
+		rotate_object_local(Vector3.UP, PI)
+		ball_cam.make_current()
 
 
 func go_to_scene(scene_path: String) -> void:
