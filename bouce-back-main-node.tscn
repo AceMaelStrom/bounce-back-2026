@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bylvk81ruigw" path="res://flying_ball.gd" id="1_k50ke"]
 [ext_resource type="Script" uid="uid://ny83qct0pkog" path="res://playermove.gd" id="1_xl1km"]
+[ext_resource type="AudioStream" uid="uid://b4ywankhvm24j" path="res://old-roblox-glass-break-sound.mp3" id="2_5bw7q"]
 [ext_resource type="Texture2D" uid="uid://boy7227nav4av" path="res://sword/SWORD_None_Base_color_1001.png" id="2_oeayk"]
 [ext_resource type="Script" uid="uid://cljdpboaqytin" path="res://weapon_manage.gd" id="3_jldg3"]
 [ext_resource type="Texture2D" uid="uid://q504yxscbx6t" path="res://sword/SWORD_None_Metallic_1001-None_Roughness_1001.png" id="3_scyta"]
@@ -190,7 +191,7 @@ albedo_color = Color(0.3529412, 0.85490197, 0, 1)
 [node name="Node3D" type="Node3D" unique_id=1806866938]
 
 [node name="glass" type="CSGBox3D" parent="." unique_id=246659496 groups=["glass"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8594971, 9.054703, -28.00856)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8594971, 22.57314, -49.887814)
 use_collision = true
 size = Vector3(19.963623, 19.297974, 1)
 material = SubResource("StandardMaterial3D_3peo4")
@@ -269,6 +270,10 @@ offset_top = 560.0
 offset_right = 1080.0
 offset_bottom = 590.0
 
+[node name="glassbreak" type="AudioStreamPlayer3D" parent="FlyingBall" unique_id=95535254]
+stream = ExtResource("2_5bw7q")
+volume_db = 2.991
+
 [node name="player" type="CharacterBody3D" parent="." unique_id=1358605452 groups=["player"]]
 script = ExtResource("1_xl1km")
 
@@ -305,7 +310,7 @@ transform = Transform3D(-0.30399987, 0.95267206, 0, -0.95267206, -0.30399987, 0,
 script = ExtResource("3_jldg3")
 
 [node name="zweihander" type="Node3D" parent="player/neck/eyes/WeaponManage" unique_id=1546071822]
-transform = Transform3D(-0.54601586, 0.7787051, -0.309005, 0.81711334, 0.5764102, 0.008726528, 0.18490912, -0.24772756, -0.95101947, 0.268, -0.279, -2)
+transform = Transform3D(-0.54601586, 0.7787051, -0.309005, 0.81711334, 0.5764102, 0.008726528, 0.18490912, -0.24772756, -0.9510194, 0.268, -0.279, -2)
 
 [node name="parrysound" type="AudioStreamPlayer3D" parent="player/neck/eyes/WeaponManage/zweihander" unique_id=1876949466]
 transform = Transform3D(1.0000006, -2.6077032e-08, 1.4901161e-08, -4.8428774e-08, 1.0000005, 1.4901161e-08, 0, 2.9802322e-08, 1.0000007, 2.682209e-07, -3.5762787e-07, -1.3113022e-06)
