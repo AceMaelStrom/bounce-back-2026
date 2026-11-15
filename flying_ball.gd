@@ -51,14 +51,9 @@ func collide(collision: KinematicCollision3D) -> void:
 	else:
 		var bounce_dir = (-global_transform.basis.z).bounce(collision.get_normal())
 		look_at(global_position + bounce_dir, global_transform.basis.y)
-<<<<<<< Updated upstream
-
 
 func _on_hitbox_body_entered(body: Node3D) -> void:
 	get_tree().change_scene_to_file("res://death.tscn")
-=======
-		global_position += collision.get_normal() * 0.05
 	
 	
 	
->>>>>>> Stashed changes

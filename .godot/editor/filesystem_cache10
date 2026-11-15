@@ -1,9 +1,9 @@
 78098b89c88a74ebe8c20117b8754620
-::res://::1794708952
+::res://::1794709402
 ball.gd::GDScript::6930941903517419207::1794698809::0::1::::<>CharacterBody3D<><>0<>0<><>::
-bouce-back-main-node.tscn::PackedScene::4049426830691558530::1794708605::0::1::::<><><>0<>0<><>::uid://bylvk81ruigw::::res://flying_ball.gd<>uid://ny83qct0pkog::::res://playermove.gd<>uid://boy7227nav4av::::res://sword/SWORD_None_Base_color_1001.png<>uid://cljdpboaqytin::::res://weapon_manage.gd<>uid://q504yxscbx6t::::res://sword/SWORD_None_Metallic_1001-None_Roughness_1001.png<>uid://266mmglodtfw::::res://sword/SWORD_None_Normal_OpenGL_1001.png
+bouce-back-main-node.tscn::PackedScene::4049426830691558530::1794709221::0::1::::<><><>0<>0<><>::uid://bylvk81ruigw::::res://flying_ball.gd<>uid://ny83qct0pkog::::res://playermove.gd<>uid://boy7227nav4av::::res://sword/SWORD_None_Base_color_1001.png<>uid://cljdpboaqytin::::res://weapon_manage.gd<>uid://q504yxscbx6t::::res://sword/SWORD_None_Metallic_1001-None_Roughness_1001.png<>uid://266mmglodtfw::::res://sword/SWORD_None_Normal_OpenGL_1001.png
 death.tscn::PackedScene::286327718971486056::1794708607::0::1::::<><><>0<>0<><>::
-flying_ball.gd::GDScript::120439875744782386::1794708606::0::1::::<>CharacterBody3D<><>0<>0<><>::
+flying_ball.gd::GDScript::120439875744782386::1794709216::0::1::::<>CharacterBody3D<><>0<>0<><>::
 icon.svg::CompressedTexture2D::2227960519749499151::1794686657::1794690779::1::::<><><>0<>0<>d5ea8c6034b3abab84704c482c76e96c<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 playermove.gd::GDScript::964054540742980210::1794703558::0::1::::<>CharacterBody3D<><>0<>0<><>::
 README.md::TextFile::-1::1794686923::0::1::::<><><>0<>0<><>::

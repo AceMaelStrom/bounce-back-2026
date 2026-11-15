@@ -74,13 +74,10 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_nne0n")
 
-<<<<<<< Updated upstream
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_jldg3"]
-=======
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_keesm"]
 height = 2.8054357
 radius = 0.2
->>>>>>> Stashed changes
 
 [sub_resource type="Animation" id="Animation_5bw7q"]
 length = 0.001
