@@ -214,6 +214,9 @@ func _physics_process(delta: float) -> void:
 		if absf(move_direction.dot(Vector3.UP)) > 0.98:
 			up_direction = Vector3.FORWARD
 		look_at(global_position + move_direction, up_direction)
+		
+func get_target_normal(hitbox: Node3D) -> Vector3:
+	return hitbox.global_transform.basis.y.normalized()
 
 func _on_hitbox_body_entered(body: Node3D) -> void:
 	if body != self:
@@ -261,7 +264,11 @@ func _on_target_hitbox_body_entered(body: Node3D) -> void:
 func _on_bounce_hitbox_body_entered(body: Node3D) -> void:
 	if body != self or homing_on:
 		return
-
+	var face = get_target_normal(bounceTarget.get_node("bounceHitbox"))
+	if face.dot(move_direction) > 0.0:
+		face = -face        # make the normal face the incoming ball
+		move_direction = move_direction.bounce(face).normalized()
+		course_direction = move_direction
 	falling = false
 	homing_on = false
 	fall_speed = 0
@@ -271,8 +278,6 @@ func _on_bounce_hitbox_body_entered(body: Node3D) -> void:
 		momentum = 100
 	momentum_bar.value = momentum
 
-	move_direction = (-bounceTarget.global_transform.basis.z).normalized()
-	course_direction = move_direction
 
 func go_to_scene(scene_path: String) -> void:
 	if changing_scene:

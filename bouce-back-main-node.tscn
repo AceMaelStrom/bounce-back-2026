@@ -258,9 +258,9 @@ use_collision = true
 size = Vector3(6.5723877, 0.19140625, 65.859505)
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="." unique_id=1472148091]
-transform = Transform3D(1.2398527, 0, 0, 0, -0.0023947104, -0.1954816, 0, 0.9980565, -0.00046903346, 5.92439, 5.673312, -217.63522)
+transform = Transform3D(1.2398527, 0, 0, 0, -0.0023947104, -0.1954816, 0, 0.9980565, -0.00046903346, -0.59054995, 5.673312, -217.63522)
 use_collision = true
-size = Vector3(6.5723877, 0.19140625, 65.859505)
+size = Vector3(17.081604, 0.19140625, 65.859505)
 
 [node name="FlyingBall" type="CharacterBody3D" parent="." unique_id=1094014442 node_paths=PackedStringArray("target", "speedTarget", "bounceTarget") groups=["ball"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.034298, -62.63903)
@@ -362,7 +362,7 @@ transform = Transform3D(-0.30399987, 0.95267206, 0, -0.95267206, -0.30399987, 0,
 script = ExtResource("3_jldg3")
 
 [node name="zweihander" type="Node3D" parent="player/neck/eyes/WeaponManage" unique_id=1546071822]
-transform = Transform3D(-0.54601586, 0.7787051, -0.3090049, 0.81711334, 0.5764102, 0.008726525, 0.18490912, -0.24772756, -0.9510191, 0.268, -0.279, -2)
+transform = Transform3D(-0.54601586, 0.7787051, -0.30900487, 0.81711334, 0.5764102, 0.008726524, 0.18490912, -0.24772756, -0.95101905, 0.268, -0.279, -2)
 
 [node name="parrysound" type="AudioStreamPlayer3D" parent="player/neck/eyes/WeaponManage/zweihander" unique_id=1876949466]
 transform = Transform3D(1.0000006, -2.6077032e-08, 1.4901161e-08, -4.8428774e-08, 1.0000005, 1.4901161e-08, 0, 2.9802322e-08, 1.0000007, 2.682209e-07, -3.5762787e-07, -1.3113022e-06)
