@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cedc2j4qxgcca"]
+
+[node name="Node2D" type="Node2D" unique_id=434241420]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=444911694]
+offset_right = 1279.0
+offset_bottom = 794.0
+bbcode_enabled = true
+text = "[font_size=500]win[/font_size]
+
+"
+fit_content = true
+tab_size = 6
