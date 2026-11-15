@@ -6,6 +6,8 @@ extends CharacterBody3D
 @export var homing_strength: float = 4.0
 @export var close_homing_strength: float = 10.0
 @export var target: Node3D
+@export var speedTarget: Node3D
+@export var bounceTarget: Node3D
 
 @onready var ball_cam: Camera3D = $BallCam
 @onready var momentum_ui: CanvasLayer = $MomentumUI
@@ -107,3 +109,15 @@ func go_to_scene(scene_path: String) -> void:
 
 	changing_scene = true
 	get_tree().call_deferred("change_scene_to_file", scene_path)
+
+
+func _on_target_hitbox_body_entered(body: Node3D) -> void:
+	homing_on = false
+	falling = false
+	fall_speed = 0
+	speed = speed + 30
+	momentum = 50.0
+	momentum_bar.value = momentum
+	target_offset = Vector3.ZERO
+	rotate_object_local(Vector3.UP, PI)
+	momentum_ui.visible = true
