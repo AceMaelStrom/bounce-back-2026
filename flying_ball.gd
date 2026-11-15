@@ -119,6 +119,7 @@ func _physics_process(delta: float) -> void:
 
 	if target and homing_on:
 		speed = return_speed
+		momentum_ui.visible = false
 		var target_position = target.global_position + target_offset
 		var player_distance = global_position.distance_to(target.global_position)
 
