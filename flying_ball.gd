@@ -30,3 +30,7 @@ func _physics_process(delta: float) -> void:
 	if collision:
 		var bounce_dir = forward.bounce(collision.get_normal())
 		look_at(global_position + bounce_dir, global_transform.basis.y)
+
+
+func _on_hitbox_body_entered(body: Node3D) -> void:
+	get_tree().change_scene_to_file("res://death.tscn")
