@@ -75,11 +75,11 @@ func _physics_process(delta: float) -> void:
 		var turn_x = Input.get_axis("ui_right", "ui_left")
 		var turn_y = Input.get_axis("ui_down", "ui_up")
 
-		move_direction = move_direction.rotated(Vector3.UP, turn_x * turn_speed * delta)
+		move_direction = move_direction.rotated(Vector3.UP, turn_x * turn_speed * momentum/10 * delta)
 		var right_direction = move_direction.cross(Vector3.UP).normalized()
 		if right_direction == Vector3.ZERO:
 			right_direction = Vector3.RIGHT
-		move_direction = move_direction.rotated(right_direction, turn_y * turn_speed * delta)
+		move_direction = move_direction.rotated(right_direction, turn_y * turn_speed * momentum/10 * delta)
 		move_direction = move_direction.slerp(course_direction, curve_return_speed * delta).normalized()
 
 		momentum -= 10.0 * delta
@@ -164,8 +164,8 @@ func _physics_process(delta: float) -> void:
 		var collider = collision.get_collider()
 		var normal = collision.get_normal()
 
-		# Bounce target: reflect off the real surface normal.
-		# Checked first so wall logic can't start a retrace.
+		# Bounce target reflect off the real surface normal
+		# Checked first so wall logic can't start a retrace
 		if bounceTarget and collider is Node3D:
 			if collider == bounceTarget or bounceTarget.is_ancestor_of(collider) or collider.is_in_group("bounce_target"):
 				_bounce_off_target(normal)
@@ -262,7 +262,7 @@ func _on_target_hitbox_body_entered(body: Node3D) -> void:
 	falling = false
 	fall_speed = 0
 	return_delay = 0
-	momentum = minf(momentum + 25.0, 100.0)
+	momentum = minf(momentum + 15.0, 100.0)
 	momentum_bar.value = momentum
 
 	var next_target = bounceTarget.get_node("bounceHitbox").global_position
@@ -284,10 +284,10 @@ func _bounce_off_target(normal: Vector3) -> void:
 		return
 	target_bounce_cooldown = 0.12
 
-	# Reflect off the surface. bounce() works whichever way the normal points.
+	# Reflect off the surface bounce() works on normal
 	move_direction = move_direction.bounce(normal).normalized()
 
-	# A homing ball just ricochets and keeps homing; steering takes over again.
+	# A homing ball just ricochets and keeps homing steering takes over again
 	if homing_on:
 		return
 
@@ -297,7 +297,7 @@ func _bounce_off_target(normal: Vector3) -> void:
 	fall_speed = 0.0
 	return_delay = 0.0
 
-	momentum = minf(momentum + 10.0, 100.0)
+	momentum = minf(momentum + 5.0, 100.0)
 	momentum_bar.value = momentum
 
 	course_direction = move_direction
