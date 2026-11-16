@@ -33,6 +33,7 @@ var bounce_cooldown := 0.0
 var target_bounce_cooldown := 0.0
 var path_points: Array[Vector3] = []
 var path_number := 0
+var broken_glass: Array[CSGBox3D] = []
 var retracing := false
 var launch_safe_time := 0.0
 var changing_scene := false
@@ -48,6 +49,9 @@ func _ready() -> void:
 
 	$ballmesh3.set_surface_override_material(0, ball_material)
 	ball_material.emission_enabled = true
+	ball_material.transparency = BaseMaterial3D.TRANSPARENCY_DISABLED
+	ball_material.albedo_color = Color(0.15, 0.8, 1.0)
+	ball_material.emission = Color(0.1, 0.65, 1.0)
 	ball_material.emission_energy_multiplier = 2.5
 
 func _physics_process(delta: float) -> void:
@@ -93,34 +97,37 @@ func _physics_process(delta: float) -> void:
 		var blue_amount = momentum / 100.0
 		blue_amount = blue_amount * blue_amount
 		var blue_value = clampi(roundi(blue_amount * 255.0), 0, 255)
-		var ball_color = Color8(0, 0, blue_value)
+		var ball_color = Color8(40, 150, maxi(blue_value, 180))
 		ball_material.albedo_color = ball_color
 		ball_material.emission = ball_color
 		ball_material.emission_energy_multiplier = 0.5 + blue_amount * 2.0
 
 	if retracing:
 		speed = return_speed
-
-		if path_number >= 0 and path_number < path_points.size():
+		var distance_left = speed * delta
+		while distance_left > 0 and path_number >= 0 and path_number < path_points.size():
 			var path_position = path_points[path_number]
 			var path_distance = global_position.distance_to(path_position)
-
-			if path_distance < 0.4:
+			if path_distance <= distance_left:
+				global_position = path_position
+				distance_left -= path_distance
 				path_number -= 1
-				if path_number >= 0:
-					path_position = path_points[path_number]
-
-			if path_number >= 0:
+			else:
 				move_direction = (path_position - global_position).normalized()
+				global_position += move_direction * distance_left
+				distance_left = 0
 
-			if path_number < path_points.size() / 2 and ball_cam.current:
-				player_cam.make_current()
-				momentum_ui.visible = false
-				power_ui.visible = true
-		else:
+		if ball_cam.current and global_position.distance_to(target.global_position) < 45:
+			player_cam.make_current()
+			momentum_ui.visible = false
+			power_ui.visible = true
+
+		if path_number < 0 or path_number >= path_points.size():
+			restore_glass()
 			retracing = false
 			homing_on = true
 			target_offset = Vector3.ZERO
+		return
 
 	if target and homing_on:
 		speed = return_speed
@@ -181,13 +188,13 @@ func _physics_process(delta: float) -> void:
 				return
 
 		if collider.is_in_group("glass") and not homing_on and momentum >= 40:
-			collider.visible = false
-			collider.call_deferred("queue_free")
-			momentum += 15
+			collider.hide()
+			collider.set_deferred("use_collision", false)
+			broken_glass.append(collider)
+			momentum += 35
 			if momentum > 100:
 				momentum = 100
 			momentum_bar.value = momentum
-			global_position += move_direction * 1.1
 			$glassbreak.play()
 			return
 
@@ -196,6 +203,8 @@ func _physics_process(delta: float) -> void:
 
 		elif collider.get_collision_layer_value(1) and bounce_cooldown <= 0:
 			bounce_cooldown = 0.12
+			
+			
 
 			if not homing_on:
 				retracing = true
@@ -203,15 +212,14 @@ func _physics_process(delta: float) -> void:
 				fall_speed = 0
 				momentum = 0
 				momentum_bar.value = 0
-				ball_material.albedo_color = Color.BLACK
-				ball_material.emission = Color.BLACK
+				ball_material.albedo_color = Color(1.0, 0.65, 0.15)
+				ball_material.emission = Color(1.0, 0.45, 0.05)
 				target_offset = Vector3.ZERO
-				path_number = path_points.size() - 2
+				path_number = path_points.size() - 1
 
 				if path_number >= 0:
 					move_direction = (path_points[path_number] - global_position).normalized()
 					course_direction = move_direction
-					global_position += move_direction * 0.2
 			else:
 				retracing = false
 				homing_on = true
@@ -228,10 +236,17 @@ func _physics_process(delta: float) -> void:
 			up_direction = Vector3.FORWARD
 		look_at(global_position + move_direction, up_direction)
 
+func restore_glass() -> void:
+	for pane in broken_glass:
+		pane.show()
+		pane.set_deferred("use_collision", true)
+	broken_glass.clear()
+
 func _on_hitbox_body_entered(body: Node3D) -> void:
 	if body != self:
 		return
 
+	restore_glass()
 	launched = true
 	homing_on = false
 	falling = false
@@ -256,7 +271,7 @@ func _on_hitbox_body_entered(body: Node3D) -> void:
 	power_ui.visible = false
 
 func _on_target_hitbox_body_entered(body: Node3D) -> void:
-	if body != self or homing_on:
+	if body != self or homing_on or retracing:
 		return
 
 	falling = false
@@ -273,7 +288,7 @@ func _on_target_hitbox_body_entered(body: Node3D) -> void:
 # Area3D version: no real surface normal, so use the hitbox's own Y axis.
 # If it reflects the wrong way, try basis.z instead of basis.y.
 func _on_bounce_hitbox_body_entered(body: Node3D) -> void:
-	if body != self or homing_on or target_bounce_cooldown > 0.0 or not bounceTarget:
+	if body != self or homing_on or retracing or target_bounce_cooldown > 0.0 or not bounceTarget:
 		return
 
 	var hitbox: Node3D = bounceTarget.get_node("bounceHitbox")

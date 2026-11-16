@@ -1,15 +1,13 @@
-extends Node2D
+extends Node
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
+	var button = find_child("Button")
+	if button:
+		button.grab_focus()
 
 func _on_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://bouce-back-main-node.tscn")
+
+func _on_menu_pressed() -> void:
+	get_tree().change_scene_to_file("res://intro_menu.tscn")

@@ -1,0 +1,296 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Shader" path="res://course_patterns.gdshader" id="1"]
+[ext_resource type="Script" path="res://finish_zone.gd" id="2"]
+
+[sub_resource type="ShaderMaterial" id="hall"]
+shader = ExtResource("1")
+shader_parameter/tube = false
+
+[sub_resource type="ShaderMaterial" id="gate"]
+shader = ExtResource("1")
+shader_parameter/tube = true
+
+[sub_resource type="StandardMaterial3D" id="glass"]
+transparency = 1
+albedo_color = Color(0.3, 0.95, 1, 0.38)
+emission_enabled = true
+emission = Color(0.08, 0.3, 0.4, 1)
+emission_energy_multiplier = 0.5
+roughness = 0.2
+cull_mode = 2
+
+[sub_resource type="BoxShape3D" id="finish"]
+size = Vector3(20, 18, 6)
+
+[node name="CourseExtension" type="Node3D"]
+
+[node name="LowerWall1" type="CSGBox3D" parent="."]
+position = Vector3(-7, 8.75, -30)
+size = Vector3(8, 18, 1.4)
+use_collision = true
+material = SubResource("gate")
+
+[node name="LowerWall2" type="CSGBox3D" parent="."]
+position = Vector3(4.5, 8.75, -78)
+size = Vector3(9.5, 18, 1.4)
+use_collision = true
+material = SubResource("gate")
+
+[node name="LowerWall3" type="CSGBox3D" parent="."]
+position = Vector3(-6, 8.75, -104)
+size = Vector3(10, 18, 1.4)
+use_collision = true
+material = SubResource("gate")
+
+[node name="LowerWall4" type="CSGBox3D" parent="."]
+position = Vector3(4, 8.75, -132)
+size = Vector3(10.5, 18, 1.4)
+use_collision = true
+material = SubResource("gate")
+
+[node name="LowerWall5" type="CSGBox3D" parent="."]
+position = Vector3(-6.5, 8.75, -160)
+size = Vector3(9, 18, 1.4)
+use_collision = true
+material = SubResource("gate")
+
+[node name="LowerWall6" type="CSGBox3D" parent="."]
+position = Vector3(5, 8.75, -181)
+size = Vector3(8.5, 18, 1.4)
+use_collision = true
+material = SubResource("gate")
+
+[node name="Boost119" type="CSGBox3D" parent="." groups=["glass"]]
+position = Vector3(2.7, 7, -119)
+size = Vector3(8, 12, 0.3)
+use_collision = true
+material = SubResource("glass")
+
+[node name="Boost185" type="CSGBox3D" parent="." groups=["glass"]]
+position = Vector3(-3, 6, -185)
+size = Vector3(6, 8, 0.3)
+use_collision = true
+material = SubResource("glass")
+
+[node name="Boost324" type="CSGBox3D" parent="." groups=["glass"]]
+position = Vector3(-3, 37, -324)
+size = Vector3(10, 13, 0.3)
+use_collision = true
+material = SubResource("glass")
+
+[node name="Boost394" type="CSGBox3D" parent="." groups=["glass"]]
+position = Vector3(0, 37, -394)
+size = Vector3(9, 13, 0.3)
+use_collision = true
+material = SubResource("glass")
+
+[node name="Boost468" type="CSGBox3D" parent="." groups=["glass"]]
+position = Vector3(-5, 37, -468)
+size = Vector3(9, 13, 0.3)
+use_collision = true
+material = SubResource("glass")
+
+[node name="Boost538" type="CSGBox3D" parent="." groups=["glass"]]
+position = Vector3(-6, 37, -538)
+size = Vector3(9, 13, 0.3)
+use_collision = true
+material = SubResource("glass")
+
+[node name="Boost608" type="CSGBox3D" parent="." groups=["glass"]]
+position = Vector3(-2, 37, -608)
+size = Vector3(9, 13, 0.3)
+use_collision = true
+material = SubResource("glass")
+
+[node name="Boost681" type="CSGBox3D" parent="." groups=["glass"]]
+position = Vector3(-2, 38, -681)
+size = Vector3(9, 13, 0.3)
+use_collision = true
+material = SubResource("glass")
+
+[node name="Boost751" type="CSGBox3D" parent="." groups=["glass"]]
+position = Vector3(-4, 37, -751)
+size = Vector3(9, 13, 0.3)
+use_collision = true
+material = SubResource("glass")
+
+[node name="Boost820" type="CSGBox3D" parent="." groups=["glass"]]
+position = Vector3(-2, 37, -820)
+size = Vector3(9, 13, 0.3)
+use_collision = true
+material = SubResource("glass")
+
+[node name="Boost892" type="CSGBox3D" parent="." groups=["glass"]]
+position = Vector3(-4, 37, -892)
+size = Vector3(9, 13, 0.3)
+use_collision = true
+material = SubResource("glass")
+
+[node name="Boost961" type="CSGBox3D" parent="." groups=["glass"]]
+position = Vector3(-3, 37, -961)
+size = Vector3(9, 13, 0.3)
+use_collision = true
+material = SubResource("glass")
+
+[node name="Floor" type="CSGBox3D" parent="."]
+position = Vector3(-2.93, 27.667, -766)
+size = Vector3(21, 0.2, 460)
+use_collision = true
+material = SubResource("hall")
+
+[node name="Ceiling" type="CSGBox3D" parent="."]
+position = Vector3(-2.93, 46.711, -766)
+size = Vector3(21, 0.2, 460)
+use_collision = true
+material = SubResource("hall")
+
+[node name="LeftWall" type="CSGBox3D" parent="."]
+position = Vector3(-13.33, 37.19, -766)
+size = Vector3(0.2, 19.24, 460)
+use_collision = true
+material = SubResource("hall")
+
+[node name="RightWall" type="CSGBox3D" parent="."]
+position = Vector3(7.47, 37.19, -766)
+size = Vector3(0.2, 19.24, 460)
+use_collision = true
+material = SubResource("hall")
+
+[node name="EndWall" type="CSGBox3D" parent="."]
+position = Vector3(-2.93, 37.19, -996)
+size = Vector3(21, 19.24, 0.3)
+use_collision = true
+material = SubResource("hall")
+
+[node name="Gate1" type="CSGCombiner3D" parent="."]
+position = Vector3(-2.93, 37.19, -570)
+use_collision = true
+
+[node name="Frame" type="CSGBox3D" parent="Gate1"]
+size = Vector3(21, 19.24, 0.7)
+material = SubResource("gate")
+
+[node name="Opening" type="CSGBox3D" parent="Gate1"]
+position = Vector3(-5, 2, 0)
+size = Vector3(10, 12, 3)
+operation = 2
+material = SubResource("gate")
+
+[node name="Gate2" type="CSGCombiner3D" parent="."]
+position = Vector3(-2.93, 37.19, -622)
+use_collision = true
+
+[node name="Frame" type="CSGBox3D" parent="Gate2"]
+size = Vector3(21, 19.24, 0.7)
+material = SubResource("gate")
+
+[node name="Opening" type="CSGBox3D" parent="Gate2"]
+position = Vector3(1, -1, 0)
+size = Vector3(10, 12, 3)
+operation = 2
+material = SubResource("gate")
+
+[node name="Gate3" type="CSGCombiner3D" parent="."]
+position = Vector3(-2.93, 37.19, -674)
+use_collision = true
+
+[node name="Frame" type="CSGBox3D" parent="Gate3"]
+size = Vector3(21, 19.24, 0.7)
+material = SubResource("gate")
+
+[node name="Opening" type="CSGBox3D" parent="Gate3"]
+position = Vector3(-5, -1, 0)
+size = Vector3(10, 12, 3)
+operation = 2
+material = SubResource("gate")
+
+[node name="Gate4" type="CSGCombiner3D" parent="."]
+position = Vector3(-2.93, 37.19, -726)
+use_collision = true
+
+[node name="Frame" type="CSGBox3D" parent="Gate4"]
+size = Vector3(21, 19.24, 0.7)
+material = SubResource("gate")
+
+[node name="Opening" type="CSGBox3D" parent="Gate4"]
+position = Vector3(1, 2, 0)
+size = Vector3(10, 12, 3)
+operation = 2
+material = SubResource("gate")
+
+[node name="Gate5" type="CSGCombiner3D" parent="."]
+position = Vector3(-2.93, 37.19, -778)
+use_collision = true
+
+[node name="Frame" type="CSGBox3D" parent="Gate5"]
+size = Vector3(21, 19.24, 0.7)
+material = SubResource("gate")
+
+[node name="Opening" type="CSGBox3D" parent="Gate5"]
+position = Vector3(-5, -1, 0)
+size = Vector3(10, 12, 3)
+operation = 2
+material = SubResource("gate")
+
+[node name="Gate6" type="CSGCombiner3D" parent="."]
+position = Vector3(-2.93, 37.19, -830)
+use_collision = true
+
+[node name="Frame" type="CSGBox3D" parent="Gate6"]
+size = Vector3(21, 19.24, 0.7)
+material = SubResource("gate")
+
+[node name="Opening" type="CSGBox3D" parent="Gate6"]
+position = Vector3(1, -1, 0)
+size = Vector3(10, 12, 3)
+operation = 2
+material = SubResource("gate")
+
+[node name="Gate7" type="CSGCombiner3D" parent="."]
+position = Vector3(-2.93, 37.19, -882)
+use_collision = true
+
+[node name="Frame" type="CSGBox3D" parent="Gate7"]
+size = Vector3(21, 19.24, 0.7)
+material = SubResource("gate")
+
+[node name="Opening" type="CSGBox3D" parent="Gate7"]
+position = Vector3(-5, 2, 0)
+size = Vector3(10, 12, 3)
+operation = 2
+material = SubResource("gate")
+
+[node name="Gate8" type="CSGCombiner3D" parent="."]
+position = Vector3(-2.93, 37.19, -934)
+use_collision = true
+
+[node name="Frame" type="CSGBox3D" parent="Gate8"]
+size = Vector3(21, 19.24, 0.7)
+material = SubResource("gate")
+
+[node name="Opening" type="CSGBox3D" parent="Gate8"]
+position = Vector3(1, -1, 0)
+size = Vector3(10, 12, 3)
+operation = 2
+material = SubResource("gate")
+
+[node name="FinishSign" type="Label3D" parent="."]
+position = Vector3(-2.93, 42, -989)
+text = "FINISH"
+font_size = 160
+outline_size = 12
+pixel_size = 0.025
+modulate = Color(0.4, 1, 0.6, 1)
+no_depth_test = false
+
+[node name="FinishZone" type="Area3D" parent="."]
+position = Vector3(-2.93, 37.19, -988)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("2")
+
+[node name="Shape" type="CollisionShape3D" parent="FinishZone"]
+shape = SubResource("finish")
+
+[connection signal="body_entered" from="FinishZone" to="FinishZone" method="_on_body_entered"]
