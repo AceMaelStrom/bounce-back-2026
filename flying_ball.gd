@@ -101,7 +101,7 @@ func _physics_process(delta: float) -> void:
 		ball_material.albedo_color = ball_color
 		ball_material.emission = ball_color
 		ball_material.emission_energy_multiplier = 0.5 + blue_amount * 2.0
-
+		#hi
 	if retracing:
 		speed = return_speed
 		var distance_left = speed * delta
